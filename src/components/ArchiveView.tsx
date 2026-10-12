@@ -4,13 +4,20 @@ import { Search, ArrowLeft, ArrowUpRight, X, BookmarkCheck } from 'lucide-react'
 
 interface ArchiveViewProps {
   onNavigate: (path: string) => void;
+  initialQuery?: string;
 }
 
-export const ArchiveView: React.FC<ArchiveViewProps> = ({ onNavigate }) => {
-  const [searchQuery, setSearchQuery] = useState('');
+export const ArchiveView: React.FC<ArchiveViewProps> = ({ onNavigate, initialQuery = '' }) => {
+  const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [sortBy, setSortBy] = useState<'number' | 'title' | 'readTime'>('number');
   const [onlySaved, setOnlySaved] = useState(false);
+
+  React.useEffect(() => {
+    if (initialQuery) {
+      setSearchQuery(initialQuery);
+    }
+  }, [initialQuery]);
 
   const savedIds = useMemo(() => {
     try {

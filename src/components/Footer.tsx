@@ -61,12 +61,18 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenDiagnostics })
                 </button>
               </li>
               <li>
-                <a
-                  href="#newsletter"
+                <button
+                  onClick={() => {
+                    onNavigate('/');
+                    setTimeout(() => {
+                      const el = document.getElementById('newsletter');
+                      if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    }, 120);
+                  }}
                   className="text-stone-300 hover:text-white transition-colors"
                 >
                   Newsletter Subscription
-                </a>
+                </button>
               </li>
             </ul>
           </div>

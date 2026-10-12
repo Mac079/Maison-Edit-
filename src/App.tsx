@@ -40,8 +40,16 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  // Normalize path by stripping trailing slash for matching
-  const normalizedPath = currentPath.replace(/\/+$/, '') || '/';
+  // Separate pathname and search params
+  let pathname = '/';
+  let initialSearchQuery = '';
+  try {
+    const urlObj = new URL(currentPath, window.location.origin || 'http://localhost');
+    pathname = urlObj.pathname.replace(/\/+$/, '') || '/';
+    initialSearchQuery = urlObj.searchParams.get('q') || urlObj.searchParams.get('search') || '';
+  } catch {
+    pathname = currentPath.split('?')[0].replace(/\/+$/, '') || '/';
+  }
 
   // Match route
   let matchedArticle: Article | undefined;
@@ -50,21 +58,21 @@ export default function App() {
   let isHome = false;
   let isNotFound = false;
 
-  if (normalizedPath === '' || normalizedPath === '/') {
+  if (pathname === '' || pathname === '/') {
     isHome = true;
-  } else if (normalizedPath.startsWith('/journal/')) {
-    const slug = normalizedPath.replace('/journal/', '');
+  } else if (pathname.startsWith('/journal/')) {
+    const slug = pathname.replace('/journal/', '');
     matchedArticle = ARTICLES.find((a) => a.slug === slug);
     if (!matchedArticle) {
       isNotFound = true;
     }
-  } else if (normalizedPath.startsWith('/category/')) {
-    const slug = normalizedPath.replace('/category/', '');
+  } else if (pathname.startsWith('/category/')) {
+    const slug = pathname.replace('/category/', '');
     matchedCategory = CATEGORIES.find((c) => c.slug === slug);
     if (!matchedCategory) {
       isNotFound = true;
     }
-  } else if (normalizedPath === '/archive') {
+  } else if (pathname === '/archive') {
     isArchive = true;
   } else {
     isNotFound = true;
@@ -104,7 +112,7 @@ export default function App() {
           <CategoryView category={matchedCategory} onNavigate={navigate} />
         )}
 
-        {isArchive && <ArchiveView onNavigate={navigate} />}
+        {isArchive && <ArchiveView onNavigate={navigate} initialQuery={initialSearchQuery} />}
 
         {isNotFound && (
           <NotFoundView

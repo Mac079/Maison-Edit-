@@ -227,13 +227,16 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onNavigate })
 
         {/* Clean Metadata Tags (Zero-Pill discipline) */}
         <div className="pt-8 border-t border-stone-200 mt-12">
-          <div className="flex items-center gap-2 text-xs text-stone-500">
+          <div className="flex flex-wrap items-center gap-2 text-xs text-stone-500">
             <span className="uppercase tracking-widest font-medium text-stone-400">Filed under:</span>
             {article.tags.map((tag, i) => (
               <React.Fragment key={tag}>
-                <span className="hover:text-stone-900 transition-colors cursor-pointer">
+                <button
+                  onClick={() => onNavigate(`/archive/?q=${encodeURIComponent(tag)}`)}
+                  className="hover:text-stone-900 transition-colors cursor-pointer"
+                >
                   {tag}
-                </span>
+                </button>
                 {i < article.tags.length - 1 && <span aria-hidden="true">·</span>}
               </React.Fragment>
             ))}
