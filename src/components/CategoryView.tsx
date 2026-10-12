@@ -56,6 +56,7 @@ export const CategoryView: React.FC<CategoryViewProps> = ({ category, onNavigate
                     alt={article.imageAlt}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-103"
                     loading="lazy"
+                    referrerPolicy="no-referrer"
                   />
                   <div className="absolute top-3 left-3 bg-stone-900/80 text-stone-100 text-[10px] uppercase tracking-wider px-2 py-0.5 font-mono">
                     {article.number}

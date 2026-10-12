@@ -170,6 +170,7 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onNavigate })
               alt={article.imageAlt}
               className="w-full h-full object-cover"
               loading="eager"
+              referrerPolicy="no-referrer"
             />
           </div>
           <figcaption className="p-3 text-xs font-serif italic text-stone-500 bg-[#f7f5f0] border-b border-stone-200">
