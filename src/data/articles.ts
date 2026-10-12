@@ -1,3 +1,14 @@
+import imgParisCouture from '../assets/images/paris_atelier_couture_1791781516357.jpg';
+import imgItalianTailoring from '../assets/images/italian_tailoring_milan_1791781530328.jpg';
+import imgHandbagCraft from '../assets/images/handbag_artisan_atelier_1791781541990.jpg';
+import imgRunway from '../assets/images/runway_concrete_hall_1791781554911.jpg';
+import imgHeritageArchive from '../assets/images/heritage_archive_atelier_1791782945181.jpg';
+import imgRedCarpet from '../assets/images/red_carpet_couture_1791782957457.jpg';
+import imgLuxuryBoutique from '../assets/images/luxury_boutique_interior_1791782968222.jpg';
+import imgVintageCouture from '../assets/images/vintage_couture_archive_1791781694716.jpg';
+import imgBiomaterials from '../assets/images/sustainable_biomaterial_textile_1791782978374.jpg';
+import imgHorology from '../assets/images/luxury_horology_timepiece_1791781705920.jpg';
+
 export interface ArticleSection {
   heading?: string;
   body: string[];
@@ -88,7 +99,7 @@ export const ARTICLES: Article[] = [
     categorySlug: 'luxury-fashion-houses',
     categoryName: 'The Houses',
     issue: 'Vol. XIV · The New Establishment',
-    image: '/images/paris_atelier_couture_1791781516357.jpg',
+    image: imgParisCouture,
     imageAlt: 'Model in a sculptural ivory and black silk gown in a Paris atelier',
     summary: 'Beyond logos and seasonal spectacle, a more exacting idea of luxury is taking shape, one measured in cut, cloth, and conviction.',
     pullQuote: {
@@ -144,7 +155,7 @@ export const ARTICLES: Article[] = [
     categorySlug: 'luxury-fashion-houses',
     categoryName: 'The Houses',
     issue: 'Vol. XIV',
-    image: '/images/italian_tailoring_milan_1791781530328.jpg',
+    image: imgItalianTailoring,
     imageAlt: 'Woman in a red tailored suit leaning on a stone column in Milan',
     summary: "Milan's sharpest houses are redrawing the suit for a generation that values authority without armor.",
     pullQuote: {
@@ -200,7 +211,7 @@ export const ARTICLES: Article[] = [
     categorySlug: 'luxury-craftsmanship',
     categoryName: 'Craft',
     issue: 'Vol. XIV',
-    image: '/images/handbag_artisan_atelier_1791781541990.jpg',
+    image: imgHandbagCraft,
     imageAlt: 'Artisan hand-stitching a brown leather handbag with waxed linen thread',
     summary: 'A single bag can pass through dozens of hands. We follow the slow choreography behind an object built to outlive trends.',
     pullQuote: {
@@ -256,7 +267,7 @@ export const ARTICLES: Article[] = [
     categorySlug: 'fashion-runway',
     categoryName: 'Runway',
     issue: 'Vol. XIV',
-    image: '/images/runway_concrete_hall_1791781554911.jpg',
+    image: imgRunway,
     imageAlt: 'Models in sculpted monochrome garments walking a runway in a brutalist hall',
     summary: 'In an age of instant images, the fashion show remains a rare space where clothes, architecture, sound, and bodies tell one story.',
     pullQuote: {
@@ -311,7 +322,7 @@ export const ARTICLES: Article[] = [
     categorySlug: 'luxury-fashion-houses',
     categoryName: 'The Houses',
     issue: 'Vol. XIV · House Codes',
-    image: '/images/heritage_archive_atelier_1791782945181.jpg',
+    image: imgHeritageArchive,
     imageAlt: 'Archival sketches, pattern toiles, and dress forms in a historic Parisian fashion house archive',
     summary: 'Decoding archival blueprints to stay relevant in a fast-moving world without losing the founder’s core grammar.',
     pullQuote: {
@@ -366,7 +377,7 @@ export const ARTICLES: Article[] = [
     categorySlug: 'fashion-culture',
     categoryName: 'Culture',
     issue: 'Vol. XIV',
-    image: '/images/red_carpet_couture_1791782957457.jpg',
+    image: imgRedCarpet,
     imageAlt: 'Woman in a sculptural emerald green haute couture gown ascending the red carpet grand staircase',
     summary: 'From couture diplomacy to cultural currency, the anatomy of a defining red-carpet moment.',
     pullQuote: {
@@ -420,7 +431,7 @@ export const ARTICLES: Article[] = [
     categorySlug: 'fashion-culture',
     categoryName: 'Culture',
     issue: 'Vol. XIV · Retail',
-    image: '/images/luxury_boutique_interior_1791782968222.jpg',
+    image: imgLuxuryBoutique,
     imageAlt: 'Minimalist luxury flagship boutique with carved travertine plinths and warm museum lighting',
     summary: 'Physical retail reimagined as temples of atmosphere, hospitality, and curated sensory experiences.',
     pullQuote: {
@@ -474,7 +485,7 @@ export const ARTICLES: Article[] = [
     categorySlug: 'luxury-objects',
     categoryName: 'Objects',
     issue: "Vol. XIV · Collector's Guide",
-    image: '/images/vintage_couture_archive_1791781694716.jpg',
+    image: imgVintageCouture,
     imageAlt: 'Conservator examining an archival 1950s evening gown in a museum vault',
     summary: 'Provenance, conservation, and the thrill of acquiring twentieth-century masterpieces.',
     pullQuote: {
@@ -529,7 +540,7 @@ export const ARTICLES: Article[] = [
     categorySlug: 'luxury-craftsmanship',
     categoryName: 'Craft',
     issue: 'Vol. XIV · Materials',
-    image: '/images/sustainable_biomaterial_textile_1791782978374.jpg',
+    image: imgBiomaterials,
     imageAlt: 'Textured mycelium mushroom leather swatch, raw silk cocoons, and botanical plant dye pigments',
     summary: 'Mushroom mycelium, regenerative silks, and closed-loop wool: where high ecology meets haute couture.',
     pullQuote: {
@@ -584,7 +595,7 @@ export const ARTICLES: Article[] = [
     categorySlug: 'luxury-objects',
     categoryName: 'Objects',
     issue: 'Vol. XIV · Objects',
-    image: '/images/luxury_horology_timepiece_1791781705920.jpg',
+    image: imgHorology,
     imageAlt: 'Macro view of an intricate skeletonized luxury mechanical watch movement',
     summary: 'High horology and high jewelry as expressions of pure decorative discipline.',
     pullQuote: {
