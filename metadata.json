@@ -1,0 +1,8 @@
+{
+  "name": "Maison Edit - Luxury Fashion Journal",
+  "description": "An independent luxury fashion journal covering heritage houses, craftsmanship, runway culture, and enduring style stories.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

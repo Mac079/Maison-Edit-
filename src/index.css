@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Bodoni Moda", "Playfair Display", Georgia, serif;
+  --font-display: "Italiana", "Bodoni Moda", serif;
+  --font-sans: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #f7f5f0;
+  color: #1c1917;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-editorial-title {
+  font-family: "Italiana", "Bodoni Moda", serif;
+  letter-spacing: -0.01em;
+}
+
+.font-editorial-body {
+  font-family: "DM Sans", sans-serif;
+}
+
+.font-editorial-serif {
+  font-family: "Bodoni Moda", "Playfair Display", Georgia, serif;
+}
+
+/* Custom drop cap */
+.drop-cap::first-letter {
+  font-family: "Italiana", "Bodoni Moda", serif;
+  float: left;
+  font-size: 4.25rem;
+  line-height: 0.8;
+  padding-top: 4px;
+  padding-right: 14px;
+  padding-bottom: 2px;
+  color: #1c1917;
+  font-weight: 400;
+}
