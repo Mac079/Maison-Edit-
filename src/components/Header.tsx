@@ -32,13 +32,13 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenD
         </div>
 
         {/* 3-Zone Top Bar Contract */}
-        <div className="flex items-center justify-between gap-8 py-4">
+        <div className="flex items-center justify-between gap-3 sm:gap-8 py-3 sm:py-4">
           {/* Zone 1: Brand Wordmark */}
           <button
             onClick={() => onNavigate('/')}
-            className="text-2xl sm:text-3xl font-editorial-title tracking-tight text-stone-900 whitespace-nowrap shrink-0 hover:opacity-90 transition-opacity text-left"
+            className="text-xl sm:text-3xl font-editorial-title tracking-tight text-stone-900 whitespace-nowrap shrink-0 hover:opacity-90 transition-opacity text-left min-h-[44px] flex items-center"
           >
-            MAISON <i className="font-serif italic font-normal">EDIT</i>
+            MAISON <i className="font-serif italic font-normal ml-1">EDIT</i>
           </button>
 
           {/* Zone 2: 5 clean single-line nav links */}
@@ -50,7 +50,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenD
                 <button
                   key={cat.slug}
                   onClick={() => onNavigate(catPath)}
-                  className={`whitespace-nowrap shrink-0 transition-colors py-1 relative ${
+                  className={`whitespace-nowrap shrink-0 transition-colors py-1 relative min-h-[40px] flex items-center ${
                     isActive
                       ? 'text-stone-950 font-semibold'
                       : 'hover:text-stone-950 text-stone-600'
@@ -69,23 +69,24 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenD
           <div className="flex items-center gap-2 shrink-0">
             <button
               onClick={() => onNavigate('/archive/')}
-              className={`inline-flex items-center gap-2 px-3.5 py-2 text-xs font-medium border transition-colors whitespace-nowrap shrink-0 ${
+              className={`inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-2 text-xs font-medium border transition-colors whitespace-nowrap shrink-0 min-h-[40px] ${
                 currentPath.startsWith('/archive')
                   ? 'bg-stone-900 text-stone-50 border-stone-900'
                   : 'bg-white text-stone-800 border-stone-300 hover:border-stone-900 hover:text-stone-950'
               }`}
             >
               <Search className="w-3.5 h-3.5" />
-              <span>Archive & Search</span>
+              <span className="hidden sm:inline">Archive & Search</span>
+              <span className="sm:hidden">Archive</span>
             </button>
           </div>
         </div>
 
         {/* Mobile secondary category ribbon */}
-        <div className="md:hidden flex items-center gap-4 overflow-x-auto py-2.5 border-t border-stone-200/50 no-scrollbar text-xs uppercase tracking-wider text-stone-600">
+        <div className="md:hidden flex items-center gap-3 overflow-x-auto py-2 border-t border-stone-200/50 no-scrollbar text-xs uppercase tracking-wider text-stone-600">
           <button
             onClick={() => onNavigate('/')}
-            className={`whitespace-nowrap shrink-0 ${currentPath === '/' ? 'text-stone-950 font-semibold' : ''}`}
+            className={`whitespace-nowrap shrink-0 py-1.5 px-2 min-h-[40px] flex items-center ${currentPath === '/' ? 'text-stone-950 font-semibold' : ''}`}
           >
             Home
           </button>
@@ -93,7 +94,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenD
             <button
               key={cat.slug}
               onClick={() => onNavigate(`/category/${cat.slug}/`)}
-              className={`whitespace-nowrap shrink-0 ${
+              className={`whitespace-nowrap shrink-0 py-1.5 px-2 min-h-[40px] flex items-center ${
                 currentPath.includes(cat.slug) ? 'text-stone-950 font-semibold' : ''
               }`}
             >

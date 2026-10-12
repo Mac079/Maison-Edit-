@@ -50,11 +50,11 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
       >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           {/* Cover Image */}
-          <div className="lg:col-span-8 overflow-hidden bg-stone-200 relative aspect-4/3 max-h-[580px]">
+          <div className="lg:col-span-8 overflow-hidden bg-stone-100 relative w-full h-[280px] sm:h-[400px] md:h-[480px] lg:h-[540px]">
             <img
               src={coverArticle.image}
               alt={coverArticle.imageAlt}
-              className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-102"
+              className="w-full h-full object-cover object-center block transition-transform duration-700 ease-out group-hover:scale-102"
               loading="eager"
               referrerPolicy="no-referrer"
             />
@@ -147,11 +147,11 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
               className="group cursor-pointer flex flex-col justify-between"
             >
               <div>
-                <div className="overflow-hidden bg-stone-200 mb-4 aspect-4/3 relative">
+                <div className="overflow-hidden bg-stone-100 mb-4 aspect-4/3 w-full relative">
                   <img
                     src={article.image}
                     alt={article.imageAlt}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-103"
+                    className="w-full h-full object-cover object-center block transition-transform duration-500 group-hover:scale-103"
                     loading="lazy"
                     referrerPolicy="no-referrer"
                   />

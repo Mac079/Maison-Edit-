@@ -39,3 +39,12 @@ body {
   color: #1c1917;
   font-weight: 400;
 }
+
+@media (max-width: 640px) {
+  .drop-cap::first-letter {
+    font-size: 3.25rem;
+    line-height: 0.85;
+    padding-top: 2px;
+    padding-right: 10px;
+  }
+}

@@ -73,10 +73,10 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onNavigate })
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* Navigation Breadcrumb Bar */}
-        <div className="flex items-center justify-between border-b border-stone-200 pb-4 mb-8 text-xs">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-stone-200 pb-3 sm:pb-4 mb-6 sm:mb-8 text-xs">
           <button
             onClick={() => onNavigate('/')}
-            className="inline-flex items-center gap-1.5 text-stone-600 hover:text-stone-950 transition-colors"
+            className="inline-flex items-center gap-1.5 text-stone-600 hover:text-stone-950 transition-colors py-1 min-h-[36px]"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Return to journal</span>
@@ -163,17 +163,17 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onNavigate })
         </header>
 
         {/* Main Editorial Image */}
-        <figure className="mb-12 bg-stone-200">
-          <div className="overflow-hidden aspect-4/3 max-h-[540px]">
+        <figure className="mb-10 sm:mb-12 w-full">
+          <div className="relative w-full h-[280px] sm:h-[420px] md:h-[500px] lg:h-[540px] overflow-hidden bg-stone-100">
             <img
               src={article.image}
               alt={article.imageAlt}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-center block transition-transform duration-700 ease-out"
               loading="eager"
               referrerPolicy="no-referrer"
             />
           </div>
-          <figcaption className="p-3 text-xs font-serif italic text-stone-500 bg-[#f7f5f0] border-b border-stone-200">
+          <figcaption className="py-2.5 sm:py-3 text-xs font-serif italic text-stone-500 bg-[#f7f5f0] border-b border-stone-200">
             {article.imageAlt} — Maison Edit Archival Documentation.
           </figcaption>
         </figure>
