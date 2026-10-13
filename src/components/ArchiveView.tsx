@@ -143,7 +143,7 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({ onNavigate, initialQue
               <button
                 key={cat.slug}
                 onClick={() => setSelectedCategory(cat.slug)}
-                className={`px-3 py-1.5 text-xs font-medium transition-colors ${
+                className={`px-3 py-2 text-xs font-medium transition-colors min-h-[36px] flex items-center ${
                   isSelected
                     ? 'bg-stone-900 text-stone-50'
                     : 'bg-stone-100 hover:bg-stone-200 text-stone-700'
@@ -156,7 +156,7 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({ onNavigate, initialQue
           {savedIds.length > 0 && (
             <button
               onClick={() => setOnlySaved(!onlySaved)}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium transition-colors ${
+              className={`inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium transition-colors min-h-[36px] ${
                 onlySaved
                   ? 'bg-emerald-900 text-white'
                   : 'bg-emerald-50 text-emerald-900 hover:bg-emerald-100 border border-emerald-200'

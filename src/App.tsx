@@ -80,16 +80,35 @@ export default function App() {
 
   // Update dynamic document title & meta tags for SEO and UX
   useEffect(() => {
+    let title = 'Maison Edit - Luxury Fashion Journal';
+    let desc = 'An independent luxury fashion journal covering heritage houses, craftsmanship, runway culture, and enduring style stories.';
+
     if (matchedArticle) {
-      document.title = `${matchedArticle.title} | Maison Edit`;
+      title = `${matchedArticle.title} | Maison Edit`;
+      desc = matchedArticle.subtitle;
     } else if (matchedCategory) {
-      document.title = `${matchedCategory.name} | Maison Edit`;
+      title = `${matchedCategory.name} | Maison Edit`;
+      desc = matchedCategory.description;
     } else if (isArchive) {
-      document.title = 'The Article Archive | Maison Edit';
+      title = 'The Article Archive | Maison Edit';
+      desc = 'Complete index of all essays, investigations, and field notes across our five editorial departments.';
     } else if (isNotFound) {
-      document.title = 'Page Not Found | Maison Edit';
-    } else {
-      document.title = 'Maison Edit - Luxury Fashion Journal';
+      title = 'Page Not Found | Maison Edit';
+      desc = 'The requested story or page could not be located in this edition of Maison Edit.';
+    }
+
+    document.title = title;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute('content', desc);
+    }
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc) {
+      ogDesc.setAttribute('content', desc);
+    }
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) {
+      ogTitle.setAttribute('content', title);
     }
   }, [matchedArticle, matchedCategory, isArchive, isNotFound]);
 

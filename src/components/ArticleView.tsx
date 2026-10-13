@@ -82,24 +82,27 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onNavigate })
             <span>Return to journal</span>
           </button>
 
-          <div className="flex items-center gap-4 text-stone-500">
-            <div className="flex items-center gap-1">
-              <span className="text-[11px] uppercase tracking-wider text-stone-400">Type:</span>
+          <div className="flex items-center gap-3 sm:gap-4 text-stone-500">
+            <div className="flex items-center gap-1 bg-stone-100/80 px-2 py-0.5 border border-stone-200/80">
+              <span className="text-[11px] uppercase tracking-wider text-stone-400 mr-0.5">Type:</span>
               <button
                 onClick={() => setFontSize('standard')}
-                className={`px-1.5 py-0.5 text-xs ${fontSize === 'standard' ? 'text-stone-950 font-bold' : 'hover:text-stone-900'}`}
+                className={`min-h-[32px] px-1.5 text-xs inline-flex items-center ${fontSize === 'standard' ? 'text-stone-950 font-bold' : 'hover:text-stone-900'}`}
+                aria-label="Standard font size"
               >
                 A
               </button>
               <button
                 onClick={() => setFontSize('large')}
-                className={`px-1.5 py-0.5 text-sm ${fontSize === 'large' ? 'text-stone-950 font-bold' : 'hover:text-stone-900'}`}
+                className={`min-h-[32px] px-1.5 text-sm inline-flex items-center ${fontSize === 'large' ? 'text-stone-950 font-bold' : 'hover:text-stone-900'}`}
+                aria-label="Large font size"
               >
                 A+
               </button>
               <button
                 onClick={() => setFontSize('relaxed')}
-                className={`px-1.5 py-0.5 text-base ${fontSize === 'relaxed' ? 'text-stone-950 font-bold' : 'hover:text-stone-900'}`}
+                className={`min-h-[32px] px-1.5 text-base inline-flex items-center ${fontSize === 'relaxed' ? 'text-stone-950 font-bold' : 'hover:text-stone-900'}`}
+                aria-label="Relaxed font size"
               >
                 A++
               </button>
@@ -107,8 +110,9 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onNavigate })
 
             <button
               onClick={handleBookmark}
-              className="inline-flex items-center gap-1 hover:text-stone-900 transition-colors"
+              className="inline-flex items-center gap-1.5 hover:text-stone-900 transition-colors min-h-[36px] px-2 py-1"
               title={isBookmarked ? 'Remove bookmark' : 'Bookmark essay'}
+              aria-label={isBookmarked ? 'Remove bookmark' : 'Bookmark essay'}
             >
               {isBookmarked ? (
                 <BookmarkCheck className="w-4 h-4 text-emerald-800" />
@@ -120,8 +124,9 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onNavigate })
 
             <button
               onClick={handleShare}
-              className="inline-flex items-center gap-1 hover:text-stone-900 transition-colors"
+              className="inline-flex items-center gap-1.5 hover:text-stone-900 transition-colors min-h-[36px] px-2 py-1"
               title="Copy share link"
+              aria-label="Copy share link"
             >
               {copied ? <Check className="w-4 h-4 text-emerald-800" /> : <Share2 className="w-4 h-4" />}
               <span className="hidden sm:inline">{copied ? 'Copied' : 'Share'}</span>

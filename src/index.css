@@ -58,10 +58,21 @@ html, body {
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+  scroll-behavior: smooth;
 }
 
 img, picture, video, canvas, svg {
   max-width: 100%;
+}
+
+/* Hide scrollbars cleanly for mobile ribbons */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 @media (max-width: 767px) {
