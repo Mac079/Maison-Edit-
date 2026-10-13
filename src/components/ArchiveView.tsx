@@ -12,6 +12,7 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({ onNavigate, initialQue
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [sortBy, setSortBy] = useState<'number' | 'title' | 'readTime'>('number');
   const [onlySaved, setOnlySaved] = useState(false);
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
 
   React.useEffect(() => {
     if (initialQuery) {
@@ -95,12 +96,13 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({ onNavigate, initialQue
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search essays by title, artisan, craft, or keyword..."
-              className="w-full pl-10 pr-9 py-2.5 text-sm bg-white border border-stone-300 focus:outline-hidden focus:border-stone-900 text-stone-900 placeholder:text-stone-400"
+              className="w-full pl-10 pr-9 py-2.5 text-sm bg-white border border-stone-300 focus:outline-hidden focus:border-stone-900 text-stone-900 placeholder:text-stone-400 min-h-[42px]"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-900"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-900 p-1"
+                aria-label="Clear search query"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -108,12 +110,12 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({ onNavigate, initialQue
           </div>
 
           {/* Sort Selector */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center justify-between sm:justify-start gap-2 w-full sm:w-auto">
             <span className="text-xs text-stone-500 uppercase tracking-wider shrink-0">Sort:</span>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
-              className="px-3 py-2.5 text-xs bg-white border border-stone-300 focus:outline-hidden focus:border-stone-900 text-stone-900"
+              className="flex-1 sm:flex-initial px-3 py-2.5 text-xs bg-white border border-stone-300 focus:outline-hidden focus:border-stone-900 text-stone-900 min-h-[42px]"
             >
               <option value="number">Issue Sequence (01-10)</option>
               <option value="title">Title (A-Z)</option>
@@ -126,7 +128,7 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({ onNavigate, initialQue
         <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-stone-200/60">
           <button
             onClick={() => setSelectedCategory('all')}
-            className={`px-3 py-1.5 text-xs font-medium transition-colors ${
+            className={`px-3 py-2 text-xs font-medium transition-colors min-h-[36px] flex items-center ${
               selectedCategory === 'all'
                 ? 'bg-stone-900 text-stone-50'
                 : 'bg-stone-100 hover:bg-stone-200 text-stone-700'
@@ -167,20 +169,48 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({ onNavigate, initialQue
         </div>
       </div>
 
-      {/* Results Count */}
-      <div className="text-xs text-stone-500 mb-6 flex items-center justify-between">
-        <span>Showing {filteredArticles.length} of {ARTICLES.length} stories</span>
-        {searchQuery && (
+      {/* View Mode & Results Count */}
+      <div className="text-xs text-stone-500 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="flex items-center gap-2">
+          <span>Showing {filteredArticles.length} of {ARTICLES.length} stories</span>
+          {searchQuery && (
+            <button
+              onClick={() => setSearchQuery('')}
+              className="text-stone-700 hover:underline ml-2"
+            >
+              Clear search
+            </button>
+          )}
+        </div>
+
+        {/* View Mode Toggle: Grid vs List */}
+        <div className="flex items-center gap-1 bg-stone-100 p-0.5 border border-stone-200 self-start sm:self-auto">
           <button
-            onClick={() => setSearchQuery('')}
-            className="text-stone-700 hover:underline"
+            onClick={() => setViewMode('grid')}
+            className={`px-2.5 py-1 text-xs font-medium transition-colors ${
+              viewMode === 'grid'
+                ? 'bg-stone-900 text-stone-50'
+                : 'text-stone-600 hover:text-stone-900'
+            }`}
+            title="Archival Grid View"
           >
-            Clear search query
+            Grid
           </button>
-        )}
+          <button
+            onClick={() => setViewMode('list')}
+            className={`px-2.5 py-1 text-xs font-medium transition-colors ${
+              viewMode === 'list'
+                ? 'bg-stone-900 text-stone-50'
+                : 'text-stone-600 hover:text-stone-900'
+            }`}
+            title="Editorial List View"
+          >
+            List
+          </button>
+        </div>
       </div>
 
-      {/* Articles Table / List */}
+      {/* Articles Display */}
       {filteredArticles.length === 0 ? (
         <div className="py-16 text-center border border-dashed border-stone-300 p-8">
           <p className="text-stone-600 font-editorial-serif text-lg mb-2">
@@ -200,20 +230,77 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({ onNavigate, initialQue
             Reset Filters
           </button>
         </div>
+      ) : viewMode === 'grid' ? (
+        /* Grid Layout: Stacks to 1 column on screens < 768px, 2-col on sm/md, 3-col on lg */
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {filteredArticles.map((article) => (
+            <article
+              key={article.id}
+              onClick={() => onNavigate(`/journal/${article.slug}/`)}
+              className="group cursor-pointer flex flex-col justify-between border-b border-stone-200 pb-6 sm:pb-8"
+            >
+              <div>
+                <div className="overflow-hidden bg-stone-900 mb-4 aspect-[4/3] w-full relative">
+                  <img
+                    src={article.image}
+                    alt={article.imageAlt}
+                    className="w-full h-full object-cover object-center block transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute top-3 left-3 bg-stone-900/80 text-stone-100 text-[10px] uppercase tracking-wider px-2 py-0.5 font-mono">
+                    {article.number}
+                  </div>
+                </div>
+
+                <div className="text-xs uppercase tracking-widest text-stone-500 font-medium mb-1.5">
+                  {article.categoryName} · {article.issue}
+                </div>
+
+                <h2 className="text-lg sm:text-xl font-editorial-serif font-medium text-stone-900 group-hover:text-stone-700 transition-colors leading-snug mb-2">
+                  {article.title}
+                </h2>
+
+                <p className="text-stone-600 text-xs sm:text-sm leading-relaxed mb-4 line-clamp-2 font-editorial-body">
+                  {article.subtitle}
+                </p>
+              </div>
+
+              <div className="pt-3 border-t border-stone-200 flex items-center justify-between text-xs text-stone-500">
+                <div>
+                  <span className="font-medium text-stone-900">{article.author}</span>
+                  <span className="mx-1.5">·</span>
+                  <span>{article.readTime}</span>
+                </div>
+                <ArrowUpRight className="w-4 h-4 text-stone-400 group-hover:text-stone-900 transition-colors" />
+              </div>
+            </article>
+          ))}
+        </div>
       ) : (
+        /* List Layout: Stacks image above text on screens < 768px, inline beside text on desktop (>= md) */
         <div className="border-t border-stone-300 divide-y divide-stone-200">
           {filteredArticles.map((article) => (
             <div
               key={article.id}
               onClick={() => onNavigate(`/journal/${article.slug}/`)}
-              className="group cursor-pointer py-6 sm:py-7 flex flex-col md:flex-row md:items-center justify-between hover:bg-stone-50/80 px-3 -mx-3 transition-colors gap-4"
+              className="group cursor-pointer py-6 sm:py-7 flex flex-col md:flex-row md:items-center justify-between hover:bg-stone-50/80 px-3 -mx-3 transition-colors gap-4 sm:gap-6"
             >
-              <div className="flex items-start gap-4 sm:gap-6 min-w-0">
-                <span className="font-mono text-xs text-stone-400 pt-1 shrink-0">
-                  {article.number}
-                </span>
+              <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6 min-w-0 flex-1">
+                {/* Responsive Image: Full width on < 768px mobile, compact beside text on md+ */}
+                <div className="w-full sm:w-44 md:w-48 aspect-[16/9] sm:aspect-[4/3] shrink-0 overflow-hidden bg-stone-900 relative">
+                  <img
+                    src={article.image}
+                    alt={article.imageAlt}
+                    className="w-full h-full object-cover object-center block group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <div className="absolute top-2 left-2 bg-stone-900/80 text-stone-100 text-[10px] uppercase tracking-wider px-1.5 py-0.5 font-mono">
+                    {article.number}
+                  </div>
+                </div>
 
-                <div className="min-w-0">
+                <div className="min-w-0 flex-1">
                   <div className="text-[11px] uppercase tracking-wider text-stone-500 mb-1">
                     {article.categoryName} · {article.issue}
                   </div>

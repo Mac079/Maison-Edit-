@@ -50,11 +50,11 @@ export const CategoryView: React.FC<CategoryViewProps> = ({ category, onNavigate
               className="group cursor-pointer flex flex-col justify-between border-b border-stone-200 pb-8"
             >
               <div>
-                <div className="overflow-hidden bg-stone-100 mb-4 aspect-4/3 w-full relative">
+                <div className="overflow-hidden bg-stone-900 mb-4 aspect-[4/3] w-full relative">
                   <img
                     src={article.image}
                     alt={article.imageAlt}
-                    className="w-full h-full object-cover object-center block transition-transform duration-500 group-hover:scale-103"
+                    className="w-full h-full object-cover object-center block transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                     referrerPolicy="no-referrer"
                   />

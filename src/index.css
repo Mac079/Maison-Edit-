@@ -48,3 +48,25 @@ body {
     padding-right: 10px;
   }
 }
+
+/* Global Responsive Layout Checks (< 768px) */
+*, ::before, ::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img, picture, video, canvas, svg {
+  max-width: 100%;
+}
+
+@media (max-width: 767px) {
+  h1, h2, h3 {
+    text-wrap: balance;
+    overflow-wrap: break-word;
+  }
+}

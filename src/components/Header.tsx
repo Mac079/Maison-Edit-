@@ -21,10 +21,11 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenD
             <button
               onClick={onOpenDiagnostics}
               className="inline-flex items-center gap-1.5 text-stone-600 hover:text-stone-900 transition-colors text-[11px]"
-              title="System & route health check"
+              title="System & responsive layout health check"
             >
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-700" />
-              <span>Diagnostic: Healthy (17/17)</span>
+              <span className="hidden sm:inline">Diagnostic: Responsive & Healthy (17/17)</span>
+              <span className="sm:hidden">Diagnostic (&lt;768px Valid)</span>
             </button>
             <span className="text-stone-300">|</span>
             <span className="text-[11px] font-serif text-stone-900 font-medium">Issue No. 14</span>

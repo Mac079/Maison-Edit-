@@ -46,38 +46,38 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
       {/* Cover Story Feature */}
       <article
         onClick={() => onNavigate(`/journal/${coverArticle.slug}/`)}
-        className="group cursor-pointer mb-16 border-b border-stone-200 pb-16"
+        className="group cursor-pointer mb-12 sm:mb-16 border-b border-stone-200 pb-12 sm:pb-16"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 items-stretch">
           {/* Cover Image */}
-          <div className="lg:col-span-8 overflow-hidden bg-stone-100 relative w-full h-[280px] sm:h-[400px] md:h-[480px] lg:h-[540px]">
+          <div className="lg:col-span-8 overflow-hidden bg-stone-900 relative w-full aspect-[4/3] sm:aspect-[16/10] lg:aspect-auto lg:h-full min-h-[260px] sm:min-h-[380px] lg:min-h-[500px]">
             <img
               src={coverArticle.image}
               alt={coverArticle.imageAlt}
-              className="w-full h-full object-cover object-center block transition-transform duration-700 ease-out group-hover:scale-102"
+              className="w-full h-full object-cover object-center block transition-transform duration-700 ease-out group-hover:scale-105"
               loading="eager"
               referrerPolicy="no-referrer"
             />
-            <div className="absolute top-4 left-4 bg-stone-900/80 backdrop-blur-xs text-stone-100 text-[10px] uppercase tracking-widest px-2.5 py-1 font-mono">
+            <div className="absolute top-3 sm:top-4 left-3 sm:left-4 bg-stone-900/90 backdrop-blur-xs text-stone-100 text-[10px] sm:text-xs uppercase tracking-widest px-2.5 py-1 font-mono">
               Cover Story · {coverArticle.issue}
             </div>
           </div>
 
           {/* Cover Editorial Copy */}
-          <div className="lg:col-span-4 flex flex-col justify-between py-2">
+          <div className="lg:col-span-4 flex flex-col justify-between py-1 sm:py-2">
             <div>
               <div className="text-xs uppercase tracking-widest text-stone-500 font-medium mb-2">
                 {coverArticle.categoryName} · {coverArticle.issue}
               </div>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-editorial-serif font-medium text-stone-900 leading-tight group-hover:text-stone-700 transition-colors mb-4">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-editorial-serif font-medium text-stone-900 leading-tight group-hover:text-stone-700 transition-colors mb-3 sm:mb-4">
                 {coverArticle.title}
               </h2>
-              <p className="text-stone-600 text-sm sm:text-base leading-relaxed mb-6 font-editorial-body">
+              <p className="text-stone-600 text-sm sm:text-base leading-relaxed mb-4 sm:mb-6 font-editorial-body">
                 {coverArticle.subtitle}
               </p>
               {coverArticle.pullQuote && (
-                <div className="border-y border-stone-200/80 py-4 my-4">
-                  <p className="font-editorial-serif italic text-sm text-stone-800 leading-relaxed">
+                <div className="border-y border-stone-200/80 py-3 sm:py-4 my-3 sm:my-4">
+                  <p className="font-editorial-serif italic text-xs sm:text-sm text-stone-800 leading-relaxed">
                     &ldquo;{coverArticle.pullQuote.text}&rdquo;
                   </p>
                 </div>
@@ -99,29 +99,29 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
       </article>
 
       {/* About The Journal Section */}
-      <section className="grid grid-cols-1 md:grid-cols-12 gap-8 py-12 border-b border-stone-200 mb-16">
+      <section className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 py-8 md:py-12 border-b border-stone-200 mb-12 md:mb-16">
         <div className="md:col-span-4">
           <div className="text-xs uppercase tracking-widest text-stone-500 font-medium mb-1">
             About the journal
           </div>
-          <h2 className="text-2xl font-editorial-serif font-medium text-stone-900">
+          <h2 className="text-xl sm:text-2xl font-editorial-serif font-medium text-stone-900">
             What is Maison Edit?
           </h2>
         </div>
-        <div className="md:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-8 text-sm text-stone-700 leading-relaxed">
-          <div className="p-5 bg-[#faf8f4] border border-stone-200/70">
+        <div className="md:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 text-sm text-stone-700 leading-relaxed">
+          <div className="p-4 sm:p-5 bg-[#faf8f4] border border-stone-200/70">
             <h3 className="font-serif italic text-base text-stone-900 mb-2">
               What is a luxury fashion journal?
             </h3>
-            <p className="text-stone-600 font-editorial-body">
+            <p className="text-stone-600 font-editorial-body text-xs sm:text-sm">
               A luxury fashion journal is an editorial publication that looks beyond trends at heritage houses, craftsmanship and the culture around them. Maison Edit is a fashion editorial for readers who value depth over speed, covering luxury fashion brands with an independent point of view.
             </p>
           </div>
-          <div className="p-5 bg-[#faf8f4] border border-stone-200/70">
+          <div className="p-4 sm:p-5 bg-[#faf8f4] border border-stone-200/70">
             <h3 className="font-serif italic text-base text-stone-900 mb-2">
               What will you find in this issue?
             </h3>
-            <p className="text-stone-600 font-editorial-body">
+            <p className="text-stone-600 font-editorial-body text-xs sm:text-sm">
               This issue features ten essays on quiet luxury, Italian tailoring, handbag craftsmanship, the fashion runway, red carpet fashion, the luxury boutique, vintage couture, sustainable materials, and fine watches and jewelry.
             </p>
           </div>
@@ -129,9 +129,9 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
       </section>
 
       {/* What's new in luxury fashion? (3 Featured Cards) */}
-      <section className="mb-20">
-        <div className="flex items-baseline justify-between border-b border-stone-200 pb-4 mb-8">
-          <h2 className="text-2xl font-editorial-serif font-medium text-stone-900">
+      <section className="mb-14 md:mb-20">
+        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between border-b border-stone-200 pb-3 sm:pb-4 mb-6 sm:mb-8 gap-1">
+          <h2 className="text-xl sm:text-2xl font-editorial-serif font-medium text-stone-900">
             What&apos;s new in luxury fashion?
           </h2>
           <span className="text-xs uppercase tracking-widest text-stone-500 font-medium">
@@ -139,7 +139,8 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
           </span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* 3-card grid: stacks 1-col on screens < 768px, 3-col on desktop */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           {featuredArticles.map((article) => (
             <article
               key={article.id}
@@ -147,11 +148,11 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
               className="group cursor-pointer flex flex-col justify-between"
             >
               <div>
-                <div className="overflow-hidden bg-stone-100 mb-4 aspect-4/3 w-full relative">
+                <div className="overflow-hidden bg-stone-900 mb-4 aspect-[4/3] w-full relative">
                   <img
                     src={article.image}
                     alt={article.imageAlt}
-                    className="w-full h-full object-cover object-center block transition-transform duration-500 group-hover:scale-103"
+                    className="w-full h-full object-cover object-center block transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                     referrerPolicy="no-referrer"
                   />
@@ -180,16 +181,16 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
       </section>
 
       {/* The Reading List (Remaining Essays 05 to 10) */}
-      <section className="border-t border-stone-200 pt-16 mb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <section className="border-t border-stone-200 pt-10 md:pt-16 mb-12 md:mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
           <div className="lg:col-span-4">
             <div className="text-xs uppercase tracking-widest text-stone-500 font-medium mb-1">
               The reading list
             </div>
-            <h2 className="text-2xl sm:text-3xl font-editorial-serif font-medium text-stone-900 mb-3">
+            <h2 className="text-xl sm:text-3xl font-editorial-serif font-medium text-stone-900 mb-2 sm:mb-3">
               Where can I read more luxury fashion stories?
             </h2>
-            <p className="text-sm text-stone-600 leading-relaxed mb-6">
+            <p className="text-xs sm:text-sm text-stone-600 leading-relaxed mb-4 sm:mb-6">
               Essential reading on the houses, artisans, materials, and ideas shaping luxury today.
             </p>
             <button
@@ -205,27 +206,36 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
               <div
                 key={article.id}
                 onClick={() => onNavigate(`/journal/${article.slug}/`)}
-                className="group cursor-pointer py-4.5 flex items-center justify-between hover:bg-stone-50/70 px-2 -mx-2 transition-colors"
+                className="group cursor-pointer py-3.5 sm:py-4.5 flex items-center justify-between hover:bg-stone-50/70 px-2 -mx-2 transition-colors min-h-[58px] gap-3"
               >
-                <div className="flex items-baseline gap-4 sm:gap-6 min-w-0 pr-4">
+                <div className="flex items-center gap-3 sm:gap-4 min-w-0 pr-2">
                   <span className="font-mono text-xs text-stone-400 shrink-0">
                     {article.number}
                   </span>
+                  {/* Responsive thumbnail on reading list */}
+                  <div className="w-14 h-11 sm:w-16 sm:h-12 shrink-0 overflow-hidden bg-stone-900 relative">
+                    <img
+                      src={article.image}
+                      alt={article.imageAlt}
+                      className="w-full h-full object-cover object-center block group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                    />
+                  </div>
                   <div className="min-w-0">
-                    <h3 className="text-base sm:text-lg font-editorial-serif font-medium text-stone-900 group-hover:text-stone-700 transition-colors truncate">
+                    <h3 className="text-sm sm:text-base lg:text-lg font-editorial-serif font-medium text-stone-900 group-hover:text-stone-700 transition-colors line-clamp-2 sm:line-clamp-1 leading-snug">
                       {article.title}
                     </h3>
-                    <div className="text-xs text-stone-500 mt-0.5">
+                    <div className="text-[11px] sm:text-xs text-stone-500 mt-0.5 sm:mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5">
                       <span>{article.categoryName}</span>
-                      <span className="mx-2">·</span>
+                      <span aria-hidden="true" className="text-stone-300">·</span>
                       <span>{article.readTime}</span>
-                      <span className="mx-2">·</span>
-                      <span className="hidden sm:inline text-stone-600">{article.author}</span>
+                      <span aria-hidden="true" className="text-stone-300">·</span>
+                      <span className="text-stone-600 hidden sm:inline">{article.author}</span>
                     </div>
                   </div>
                 </div>
 
-                <div className="shrink-0 text-stone-400 group-hover:text-stone-900 transition-colors">
+                <div className="shrink-0 text-stone-400 group-hover:text-stone-900 transition-colors p-1">
                   <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </div>
               </div>
@@ -235,7 +245,7 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
       </section>
 
       {/* Private Newsletter Subscription Section */}
-      <section id="newsletter" className="bg-[#ede8df] border border-stone-300 p-8 sm:p-12 mb-12">
+      <section id="newsletter" className="bg-[#ede8df] border border-stone-300 p-6 sm:p-12 mb-10 sm:mb-12">
         <div className="max-w-3xl mx-auto text-center">
           <div className="text-xs uppercase tracking-widest text-stone-600 font-medium mb-2">
             The Private Letter

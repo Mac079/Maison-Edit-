@@ -164,7 +164,7 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onNavigate })
 
         {/* Main Editorial Image */}
         <figure className="mb-10 sm:mb-12 w-full">
-          <div className="relative w-full h-[280px] sm:h-[420px] md:h-[500px] lg:h-[540px] overflow-hidden bg-stone-100">
+          <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] md:aspect-[21/10] max-h-[620px] overflow-hidden bg-stone-900">
             <img
               src={article.image}
               alt={article.imageAlt}
@@ -173,7 +173,7 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onNavigate })
               referrerPolicy="no-referrer"
             />
           </div>
-          <figcaption className="py-2.5 sm:py-3 text-xs font-serif italic text-stone-500 bg-[#f7f5f0] border-b border-stone-200">
+          <figcaption className="py-2.5 sm:py-3 text-xs font-serif italic text-stone-500 border-b border-stone-200">
             {article.imageAlt} — Maison Edit Archival Documentation.
           </figcaption>
         </figure>
