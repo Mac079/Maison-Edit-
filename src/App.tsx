@@ -43,10 +43,12 @@ export default function App() {
   // Separate pathname and search params
   let pathname = '/';
   let initialSearchQuery = '';
+  let initialSaved = false;
   try {
     const urlObj = new URL(currentPath, window.location.origin || 'http://localhost');
     pathname = urlObj.pathname.replace(/\/+$/, '') || '/';
     initialSearchQuery = urlObj.searchParams.get('q') || urlObj.searchParams.get('search') || '';
+    initialSaved = urlObj.searchParams.get('saved') === 'true';
   } catch {
     pathname = currentPath.split('?')[0].replace(/\/+$/, '') || '/';
   }
@@ -131,7 +133,13 @@ export default function App() {
           <CategoryView category={matchedCategory} onNavigate={navigate} />
         )}
 
-        {isArchive && <ArchiveView onNavigate={navigate} initialQuery={initialSearchQuery} />}
+        {isArchive && (
+          <ArchiveView
+            onNavigate={navigate}
+            initialQuery={initialSearchQuery}
+            initialSaved={initialSaved}
+          />
+        )}
 
         {isNotFound && (
           <NotFoundView

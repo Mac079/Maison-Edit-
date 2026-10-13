@@ -249,8 +249,55 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onNavigate })
           </div>
         </div>
 
+        {/* Related Stories in Department */}
+        {(() => {
+          const related = ARTICLES.filter(
+            (a) => a.id !== article.id && a.categorySlug === article.categorySlug
+          ).slice(0, 2);
+          const fallbackRelated = related.length > 0 ? related : ARTICLES.filter((a) => a.id !== article.id).slice(0, 2);
+
+          return (
+            <div className="pt-10 border-t border-stone-200 mt-12">
+              <div className="text-[11px] font-sans uppercase tracking-[0.2em] text-stone-400 mb-6 font-semibold">
+                More in {article.categoryName}
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {fallbackRelated.map((rel) => (
+                  <article
+                    key={rel.id}
+                    onClick={() => onNavigate(`/journal/${rel.slug}/`)}
+                    className="group cursor-pointer flex gap-4 p-3 bg-stone-50 border border-stone-200/80 hover:border-stone-900 transition-colors"
+                  >
+                    <div className="w-20 h-16 shrink-0 overflow-hidden bg-stone-950">
+                      <img
+                        src={rel.image}
+                        alt={rel.imageAlt}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="min-w-0 flex-1 flex flex-col justify-between">
+                      <div>
+                        <div className="text-[10px] font-mono text-stone-500 uppercase">
+                          {rel.issue}
+                        </div>
+                        <h4 className="font-editorial-serif text-sm font-medium text-stone-950 group-hover:text-stone-700 line-clamp-2 leading-snug">
+                          {rel.title}
+                        </h4>
+                      </div>
+                      <div className="text-[11px] text-stone-400 font-editorial-body pt-1">
+                        {rel.readTime}
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          );
+        })()}
+
         {/* Previous / Next Essay Pagination */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-12 border-t border-stone-200 mt-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-10 border-t border-stone-200 mt-10">
           {prevArticle ? (
             <button
               onClick={() => onNavigate(`/journal/${prevArticle.slug}/`)}
@@ -285,6 +332,50 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onNavigate })
             <div />
           )}
         </div>
+      </div>
+
+      {/* Floating Mobile Reading Bar (< 768px) */}
+      <div className="md:hidden fixed bottom-3 left-4 right-4 z-40 bg-stone-900/95 backdrop-blur-md text-stone-100 border border-stone-700 px-4 py-2 shadow-2xl flex items-center justify-between">
+        <button
+          onClick={() => onNavigate('/')}
+          className="flex items-center gap-1 text-xs text-stone-300 hover:text-white py-1"
+        >
+          <ArrowLeft className="w-3.5 h-3.5" />
+          <span>Journal</span>
+        </button>
+
+        <span className="text-stone-600">|</span>
+
+        <button
+          onClick={handleBookmark}
+          className="flex items-center gap-1 text-xs text-stone-300 hover:text-white py-1"
+        >
+          {isBookmarked ? (
+            <BookmarkCheck className="w-3.5 h-3.5 text-emerald-400" />
+          ) : (
+            <Bookmark className="w-3.5 h-3.5" />
+          )}
+          <span>{isBookmarked ? 'Saved' : 'Save'}</span>
+        </button>
+
+        <span className="text-stone-600">|</span>
+
+        <button
+          onClick={handleShare}
+          className="flex items-center gap-1 text-xs text-stone-300 hover:text-white py-1"
+        >
+          {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Share2 className="w-3.5 h-3.5" />}
+          <span>{copied ? 'Copied' : 'Share'}</span>
+        </button>
+
+        <span className="text-stone-600">|</span>
+
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="text-xs text-stone-300 hover:text-white py-1"
+        >
+          &uarr; Top
+        </button>
       </div>
     </div>
   );
