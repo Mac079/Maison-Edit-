@@ -23,7 +23,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenDiagnostics })
             <p className="text-stone-400 text-sm leading-relaxed max-w-sm mb-6">
               An independent journal of enduring style, exceptional objects, and the ateliers that craft them. Published in Paris, Milan, and Geneva.
             </p>
-            <div className="flex items-center gap-3 text-xs text-stone-500">
+            <div className="flex flex-wrap items-center gap-3 text-xs text-stone-500">
               <span>ISSN 2940-1428</span>
               <span>·</span>
               <span>Volume XIV</span>
@@ -99,8 +99,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenDiagnostics })
 
         {/* Bottom copyright */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-500 gap-4">
-          <div>&copy; 2026 Maison Edit. All rights reserved.</div>
-          <div className="flex items-center gap-6">
+          <div>&copy; 2026 Maison Edit. All rights reserved. Published in Paris, Milan &amp; Geneva.</div>
+          <div className="flex flex-wrap items-center gap-4 sm:gap-6">
             <span>Published with Perspective</span>
             <span>·</span>
             <span>Curatorial Independence</span>
