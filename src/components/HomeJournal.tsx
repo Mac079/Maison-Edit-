@@ -331,7 +331,7 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
               </h2>
             </div>
             <span className="text-xs uppercase tracking-widest text-stone-500 font-mono">
-              Curated Reader Favorites · 01 – 05
+              Curated Reader Favorites · 01 to 05
             </span>
           </div>
 

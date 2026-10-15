@@ -179,7 +179,7 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onNavigate })
             />
           </div>
           <figcaption className="py-2.5 sm:py-3 text-xs font-serif italic text-stone-500 border-b border-stone-200">
-            {article.imageAlt} — Maison Edit Archival Documentation.
+            {article.imageAlt} · Maison Edit Archival Documentation.
           </figcaption>
         </figure>
 
@@ -208,7 +208,7 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onNavigate })
                   <p
                     key={pIdx}
                     className={`mb-6 text-stone-700 leading-relaxed ${
-                      isOpeningPara ? 'drop-cap' : ''
+                    isOpeningPara ? 'drop-cap' : ''
                     }`}
                   >
                     {para}
@@ -225,7 +225,7 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onNavigate })
                 &ldquo;{article.pullQuote.text}&rdquo;
               </p>
               <cite className="block text-xs uppercase tracking-widest text-stone-500 font-sans mt-4 not-italic font-medium">
-                — {article.pullQuote.attribution}
+                {article.pullQuote.attribution}
               </cite>
             </blockquote>
           )}

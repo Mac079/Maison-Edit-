@@ -81,7 +81,7 @@ export const DiagnosticReport: React.FC<DiagnosticReportProps> = ({ isOpen, onCl
     },
     {
       view: 'Journal (Home)',
-      container: 'Selected Stories (02–04)',
+      container: 'Selected Stories (02 to 04)',
       breakpoint: '< 768px (Mobile)',
       expected: '3-column grid collapses to 1-column vertical stack',
       status: 'Passed',
@@ -89,7 +89,7 @@ export const DiagnosticReport: React.FC<DiagnosticReportProps> = ({ isOpen, onCl
     },
     {
       view: 'Journal (Home)',
-      container: 'Reading List (05–10)',
+      container: 'Reading List (05 to 10)',
       breakpoint: '< 768px (Mobile)',
       expected: 'Row items wrap cleanly with compact thumbnail & touch targets',
       status: 'Passed',
@@ -277,7 +277,7 @@ export const DiagnosticReport: React.FC<DiagnosticReportProps> = ({ isOpen, onCl
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-1">
                     <div className="flex items-center gap-2">
                       <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                      <span className="font-medium text-stone-900">{check.view} — {check.container}</span>
+                      <span className="font-medium text-stone-900">{check.view} : {check.container}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="font-mono text-[10px] bg-stone-100 text-stone-700 px-1.5 py-0.5">

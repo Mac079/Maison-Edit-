@@ -59,7 +59,7 @@ export const CATEGORIES: Category[] = [
     slug: 'fashion-runway',
     name: 'Fashion Runway',
     shortName: 'Runway',
-    description: 'The choreography of space, sound, and garment — analyzing the dramatic salon presentation as a live cultural manifesto.',
+    description: 'The choreography of space, sound, and garment, analyzing the dramatic salon presentation as a live cultural manifesto.',
     issueScope: 'Autumn / Winter Collections',
   },
   {
@@ -175,7 +175,7 @@ export const ARTICLES: Article[] = [
       {
         heading: 'The Geometry of the Spalla Camicia',
         body: [
-          'At the heart of modern Italian construction is the celebrated "spalla camicia"—the shirt-style shoulder. Instead of inserting thick felt wadding to fabricate artificial broadness, the tailor gathers the sleeve head with microscopic hand puckering, inserting the cloth cleanly beneath the shoulder blade.',
+          'At the heart of modern Italian construction is the celebrated "spalla camicia", known as the shirt-style shoulder. Instead of inserting thick felt wadding to fabricate artificial broadness, the tailor gathers the sleeve head with microscopic hand puckering, inserting the cloth cleanly beneath the shoulder blade.',
           'This technical feat affords the wearer total range of motion. One can hail a car, reach for archival blueprints, or gesture across a negotiating table without the jacket body hiking up or the collar lifting away from the nape of the neck. It is tailoring engineered for a life of kinetic velocity.',
           'Paired with high-twist wool crepes and airy wool-mohair blends, these garments achieve a miraculous balance: they drape with crisp verticality while maintaining a thermal lightness that adapts seamlessly from Milanese spring humidity to climate-controlled high-rise boardrooms in Tokyo or New York.',
         ],
@@ -232,7 +232,7 @@ export const ARTICLES: Article[] = [
         heading: 'The Double-Needle Saddle Stitch',
         body: [
           'The heart and soul of true artisanal leatherwork remains the traditional saddle stitch, a technique inherited from equestrian harness makers who could not afford harness failures at full gallop. Using two blunt tapestry needles attached to opposite ends of a single length of beeswax-coated French linen thread, the artisan passes both needles through each awl-pierced diamond hole in opposing directions.',
-          'Unlike a lockstitch produced by modern industrial sewing machines—which creates a series of interlocking loops that will unravel entirely if a single stitch is severed—the saddle stitch creates independent, interlocking friction knots at every perforation. If one stitch wears through after forty years of daily use, the surrounding stitches hold with relentless tenacity.',
+          'Unlike a lockstitch produced by modern industrial sewing machines, which creates a series of interlocking loops that will unravel entirely if a single stitch is severed, the saddle stitch creates independent, interlocking friction knots at every perforation. If one stitch wears through after forty years of daily use, the surrounding stitches hold with relentless tenacity.',
           'Watch an artisan work: clamped between the wooden jaws of a stitching pony, the leather is pierced with an awl held in the right hand while both needles follow an instinctive rhythm. The artisan pulls both threads outward simultaneously, feeling the exact resistance of the grain to equalize thread tension. It is a slow, meditative choreography that cannot be rushed by mechanized assembly lines.',
         ],
       },
@@ -241,7 +241,7 @@ export const ARTICLES: Article[] = [
         body: [
           'Perhaps the most telling indicator of a counterfeit or compromised luxury bag lies along its raw edges. Where mass producers apply a thick plasticized sealant that cracks and peels within eighteen months, a heritage atelier executes the laborious ritual of hot edge polishing.',
           'First, the edge is bevelled with an edge plane, followed by sanding with progressive grits of emery paper. An organic dye blended with gum tragacanth is applied by hand with a brass roller pen. Once dry, a heated iron tool (fileteuse) is passed along the perimeter, melting the waxes and fusing the dye deep into the leather fibers.',
-          'This cycle—sanding, dyeing, hot ironing, beeswax polishing, and hand buffing with coarse canvas cloth—is repeated up to seven times until the edge gleams with the glassy, indestructible smoothness of polished mahogany.',
+          'This cycle of sanding, dyeing, hot ironing, beeswax polishing, and hand buffing with coarse canvas cloth is repeated up to seven times until the edge gleams with the glassy, indestructible smoothness of polished mahogany.',
         ],
       },
       {
@@ -303,7 +303,7 @@ export const ARTICLES: Article[] = [
         heading: 'The Shared Rite of Passage',
         body: [
           'In our increasingly fragmented, algorithm-sorted existence, shared collective experiences have become exceedingly rare. The runway show remains one of the last secular rituals where diverse creative communities gather at an exact coordinate in physical space and time to witness the birth of a new artistic era.',
-          'When the final walk concludes and the designer emerges for a brief, self-effacing bow, the roar of applause is not just for the garments—it is gratitude for fifteen minutes of unadulterated aesthetic transport.',
+          'When the final walk concludes and the designer emerges for a brief, self-effacing bow, the roar of applause is not just for the garments, but gratitude for fifteen minutes of unadulterated aesthetic transport.',
         ],
       },
     ],
@@ -334,7 +334,7 @@ export const ARTICLES: Article[] = [
         heading: 'The Paradox of the Sacred Archive',
         body: [
           'To inherit creative leadership at a maison with a century of continuous heritage is to walk a razor wire between idolatry and vandalism. Replicate past archival successes too faithfully, and the house quickly decays into a dusty wax museum, incapable of speaking to contemporary realities. Depart too recklessly, and you alienate the multi-generational client base while diluting the historical equity that justifies four-figure price tags.',
-          'The archives of the great Parisian houses—temperature-controlled vaults filled with client order ledgers, tissue-wrapped muslins, original gouache croquis, and swatch libraries dating back to the Belle Époque—are often treated by outsiders as shrines. But the most visionary creative directors understand that an archive is not a mausoleum; it is a laboratory.',
+          'The archives of the great Parisian houses, temperature-controlled vaults filled with client order ledgers, tissue-wrapped muslins, original gouache croquis, and swatch libraries dating back to the Belle Époque, are often treated by outsiders as shrines. But the most visionary creative directors understand that an archive is not a mausoleum; it is a laboratory.',
           'They do not look at an archival 1952 evening cape to copy its silhouette stitch-for-stitch. Instead, they interrogate its underlying engineering: How did the founder achieve volume without weight? What internal boning anchored the waist? What psychological appetite did this garment fulfill in its original post-war cultural moment?',
         ],
       },
@@ -350,7 +350,7 @@ export const ARTICLES: Article[] = [
         heading: 'The Creative Director as Custodian and Provocateur',
         body: [
           'The modern tenure of a creative director has compressed dramatically, often lasting mere three-year cycles. Those who leave an indelible legacy do not attempt to rewrite the entire encyclopedia in their first season. They select three or four core house codes and subject them to radical structural testing.',
-          'They collaborate closely with the premiere d’atelier—the master patternmakers who have worked in the house for thirty or forty years. These artisans embody the living memory of the maison. They know how specific silks behave when cut across the grain; they remember how the founder solved a drape problem forty years prior.',
+          'They collaborate closely with the premiere d’atelier, the master patternmakers who have worked in the house for thirty or forty years. These artisans embody the living memory of the maison. They know how specific silks behave when cut across the grain; they remember how the founder solved a drape problem forty years prior.',
           'When mutual trust is established between a radical outside visionary and these archival craftspeople, miracles occur. The historical codes are liberated from nostalgia, stepping boldly into the modern streetscape with renewed vitality.',
         ],
       },
@@ -390,7 +390,7 @@ export const ARTICLES: Article[] = [
         body: [
           'What appears to the television viewer as a spontaneous twenty-second photo call on the steps of the Dolby Theatre or the Palais des Festivals in Cannes is in fact the culmination of an eight-month geopolitical campaign. Red-carpet dressing is modern fashion diplomacy at its highest stakes, orchestrating millions of dollars in media value and repositioning luxury brands overnight.',
           'Talent agencies in Los Angeles, public relations executives in London, and premier atelier managers on the Place Vendôme engage in intense games of strategic alignment. Which actress embodies the cerebral sophistication of a modernist Milanese house? Who possesses the statuesque daring required to carry off a museum-loaned archival corset from 1995?',
-          'When the alignment is flawless—when the garment, the human form, the hair, the high jewelry, and the political moment coalesce—the image ricochets across five continents in minutes, etching itself into cultural mythology.',
+          'When the alignment is flawless, with the garment, human form, hair, high jewelry, and cultural moment coalescing, the image ricochets across five continents in minutes, etching itself into cultural mythology.',
         ],
       },
       {
@@ -411,7 +411,7 @@ export const ARTICLES: Article[] = [
       {
         heading: 'Cultural Currency and Commercial Repercussions',
         body: [
-          'The ultimate triumph of a historic red-carpet moment is measured not merely in social media metrics, but in how it reshapes consumer perception of the maison. A daring, critically lauded gown elevates the entire brand universe—bestowing prestige upon its fragrance counters, leather goods, and ready-to-wear collections globally.',
+          'The ultimate triumph of a historic red-carpet moment is measured not merely in social media metrics, but in how it reshapes consumer perception of the maison. A daring, critically lauded gown elevates the entire brand universe, bestowing prestige upon its fragrance counters, leather goods, and ready-to-wear collections globally.',
           'In an era where traditional print advertising struggles to capture fractured attention spans, three hundred feet of crimson wool remains the ultimate amphitheater of contemporary luxury.',
         ],
       },
@@ -505,7 +505,7 @@ export const ARTICLES: Article[] = [
         heading: 'Verifying Provenance and Decoding Atelier Labels',
         body: [
           'The first and most critical duty of the aspiring couture collector is the rigorous verification of provenance. Unlike commercial garments with standardized printed wash tags, authentic mid-century couture pieces feature hand-stitched woven silk labels bearing the maison’s name, located in the back collar, waistband, or internal side seam.',
-          'Crucially, behind or beneath this main label—or hidden inside a small silk ribbon taped to an inner hem—you will find the garment’s unique client order number, either stamped in indelible ink or handwritten in cursive. This accession number was recorded in the maison’s physical client ledgers alongside the original purchaser’s name, the date of the salon presentation, and the fabric reference swatch.',
+          'Crucially, behind or beneath this main label, or tucked inside a small silk ribbon taped to an inner hem, you will find the garment’s unique client order number, either stamped in indelible ink or handwritten in cursive. This accession number was recorded in the maison’s physical client ledgers alongside the original purchaser’s name, the date of the salon presentation, and the fabric reference swatch.',
           'If a seller presents an alleged 1950s couture gown that contains overlocked machine surge stitching (zigzag edges) on internal seams, synthetic nylon thread, or plastic zippers, alarm bells should ring immediately. Mid-century couture seams were finished with hand-rolled silk whipstitching, hand-bound seam allowances, and hand-stitched metal spring hook-and-eye closures.',
         ],
       },
@@ -553,7 +553,7 @@ export const ARTICLES: Article[] = [
         body: [
           'For nearly three decades, the term "eco-friendly fashion" carried an unfortunate aesthetic and tactile stigma. Early iterations of sustainable clothing were frequently associated with coarse hemp sackcloth, dull unbleached canvas, or cheap synthetic substitutes derived from petroleum-based recycled plastics that shed toxic microfibers into oceans and degraded into landfill sludge.',
           'To the discerning patron of European luxury, these early compromises were completely unacceptable. True luxury demands an uncompromising sensory standard: the liquid sheen of pure mulberry silk, the buttery suppleness of vegetable-tanned calfskin, and the thermal cloud of hand-sorted cashmere.',
-          'Today, however, that compromise era has been thoroughly buried. A profound technological revolution is sweeping through European ateliers, driven by advanced bio-fabrication, regenerative agricultural partnerships, and closed-loop chemistry. Modern ecological materials are not merely matching traditional benchmarks—in many structural properties, they are actively outperforming them.',
+          'Today, however, that compromise era has been thoroughly buried. A profound technological revolution is sweeping through European ateliers, driven by advanced bio-fabrication, regenerative agricultural partnerships, and closed-loop chemistry. Modern ecological materials are not merely matching traditional benchmarks; in many structural properties, they are actively outperforming them.',
         ],
       },
       {
@@ -576,7 +576,7 @@ export const ARTICLES: Article[] = [
         heading: 'Ecology as the Ultimate Expression of Craft Discipline',
         body: [
           'The historical ethos of luxury has always been rooted in conservation: spending immense human effort to create objects of such unassailable quality that they are cherished, repaired, and passed down across generations rather than discarded after a season.',
-          'By aligning that ancient respect for durability with cutting-edge biomaterial science, the modern luxury sector is proving that radical ecological responsibility is not a begrudging concession to regulations—it is the highest, most sophisticated expression of craftsmanship in the twenty-first century.',
+          'By aligning that ancient respect for durability with cutting-edge biomaterial science, the modern luxury sector is proving that radical ecological responsibility is not a begrudging concession to regulations, but rather the highest, most sophisticated expression of craftsmanship in the twenty-first century.',
         ],
       },
     ],
@@ -608,14 +608,14 @@ export const ARTICLES: Article[] = [
         body: [
           'For much of the late twentieth century, traditional horological purists in the Swiss Jura Valley viewed the incursions of Parisian fashion houses with deep suspicion, if not outright contempt. And to a degree, their skepticism was warranted: during the 1980s and 1990s, many apparel brands simply licensed their names to third-party manufacturers, encasing cheap quartz movements inside branded gold-plated cases and selling them at immense markups.',
           'However, over the past two decades, that divide has been obliterated by a bold, multi-billion-dollar commitment to authentic manufacture status. The premier luxury maisons realized that to command genuine respect in high horology, they could not rely on smoke and mirrors. They bought historic manufacture facilities in Le Brassus, La Chaux-de-Fonds, and Geneva, staffing them with master watchmakers, gem-setters, and guilloché artisans.',
-          'Today, these houses produce in-house calibers of breathtaking mechanical complexity—flying tourbillons, minute repeaters, perpetual calendars, and ultra-thin movements—that stand toe-to-toe with the most venerable independent Swiss workshops, while infusing case design with an audacious aesthetic liberty that conservative watchmakers could never envision.',
+          'Today, these houses produce in-house calibers of breathtaking mechanical complexity, including flying tourbillons, minute repeaters, perpetual calendars, and ultra-thin movements, that stand toe-to-toe with the most venerable independent Swiss workshops, while infusing case design with an audacious aesthetic liberty that conservative watchmakers could never envision.',
         ],
       },
       {
         heading: 'The Poetry of Hand-Finishing and Anglage',
         body: [
           'True haute horlogerie is defined not merely by what a mechanical movement achieves, but by how every microscopic component is finished under forty-power magnification. In a world of automated computer-numerical-control (CNC) machining, raw parts emerge with sharp, sterile industrial edges.',
-          'In a master atelier, every steel bridge, pinion, and balance wheel is handed over to human artisans who execute the sacred art of anglage—hand-bevelling and polishing the edges using wooden pegs fashioned from gentian wood and diamond paste. The internal angles, which no machine can polish cleanly, are finished to a mirror sheen with microscopic hand files.',
+          'In a master atelier, every steel bridge, pinion, and balance wheel is handed over to human artisans who execute the sacred art of anglage, hand-bevelling and polishing the edges using wooden pegs fashioned from gentian wood and diamond paste. The internal angles, which no machine can polish cleanly, are finished to a mirror sheen with microscopic hand files.',
           'Blued steel screws are tempered by hand over a heated brass pan until their color shifts from yellow to deep cornflower blue. Dials are engraved on century-old hand-turned rose engines, carving intricate moiré and barleycorn patterns (guilloché) that dance when struck by natural daylight. This is mechanics elevated to pure decorative poetry.',
         ],
       },
