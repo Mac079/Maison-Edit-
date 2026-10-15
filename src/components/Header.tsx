@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { CATEGORIES, ARTICLES } from '../data/articles';
 import { Search, ShieldCheck, Menu, X, Bookmark, ArrowRight, Compass, Sparkles } from 'lucide-react';
+import { SOCIAL_LINKS } from './Footer';
 
 interface HeaderProps {
   currentPath: string;
@@ -330,8 +331,30 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenD
             </div>
 
             {/* Drawer Footer */}
-            <div className="p-5 border-t border-stone-200 bg-[#f4f1ea] text-xs text-stone-600 space-y-3">
-              <div className="flex items-center justify-between">
+            <div className="p-5 border-t border-stone-200 bg-[#f4f1ea] text-xs text-stone-600 space-y-3.5">
+              {/* Social Channels in Drawer */}
+              <div>
+                <div className="text-[10px] font-mono uppercase tracking-widest text-stone-500 mb-2">
+                  Follow @maisonedit
+                </div>
+                <div className="flex items-center gap-4">
+                  {SOCIAL_LINKS.map((item) => (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={item.ariaLabel}
+                      title={`${item.name}: ${item.handle}`}
+                      className="text-stone-700 hover:text-stone-950 transition-transform hover:scale-110 p-0.5"
+                    >
+                      {item.icon}
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between pt-2 border-t border-stone-200/60">
                 <span className="font-serif italic">Maison Edit · Paris</span>
                 <button
                   onClick={() => {
