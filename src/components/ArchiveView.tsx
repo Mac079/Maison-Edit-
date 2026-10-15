@@ -54,11 +54,12 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
       const inSubtitle = article.subtitle.toLowerCase().includes(q);
       const inAuthor = article.author.toLowerCase().includes(q);
       const inTags = article.tags.some((t) => t.toLowerCase().includes(q));
+      const inKeywords = (article.seoKeywords || []).some((k) => k.toLowerCase().includes(q));
       const inBody = article.sections.some((s) =>
         s.body.some((p) => p.toLowerCase().includes(q))
       );
 
-      return inTitle || inSubtitle || inAuthor || inTags || inBody;
+      return inTitle || inSubtitle || inAuthor || inTags || inKeywords || inBody;
     }).sort((a, b) => {
       if (sortBy === 'title') {
         return a.title.localeCompare(b.title);
@@ -70,17 +71,33 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
     });
   }, [searchQuery, selectedCategory, sortBy, onlySaved, savedIds]);
 
+  const popularKeywords = [
+    'Quiet Luxury',
+    'Italian Tailoring',
+    'Saddle Stitch',
+    'Paris Runway',
+    'Heritage Codes',
+    'Red Carpet',
+    'Vintage Couture',
+    'Biomaterials',
+    'High Horology',
+  ];
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
       {/* Breadcrumb */}
       <div className="border-b border-stone-200 pb-4 mb-8 text-xs">
-        <button
-          onClick={() => onNavigate('/')}
-          className="inline-flex items-center gap-1.5 text-stone-600 hover:text-stone-950 transition-colors"
-        >
-          <ArrowLeft className="w-3.5 h-3.5" />
-          <span>Return to journal</span>
-        </button>
+        <nav aria-label="Breadcrumb" className="inline-flex items-center gap-1.5 text-stone-600">
+          <button
+            onClick={() => onNavigate('/')}
+            className="inline-flex items-center gap-1.5 hover:text-stone-950 transition-colors"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+            <span>Return to journal</span>
+          </button>
+          <span className="text-stone-300" aria-hidden="true">/</span>
+          <span className="text-stone-900 font-medium">Article Archive</span>
+        </nav>
       </div>
 
       {/* Header */}
@@ -133,6 +150,27 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
               <option value="readTime">Read Time (Shortest first)</option>
             </select>
           </div>
+        </div>
+
+        {/* Curated Editorial Keyword Chips */}
+        <div className="flex flex-wrap items-center gap-1.5 text-xs text-stone-500">
+          <span className="font-mono text-[10px] uppercase tracking-widest text-stone-400 mr-1">Curated Inquiries:</span>
+          {popularKeywords.map((kw) => {
+            const isActive = searchQuery.toLowerCase() === kw.toLowerCase();
+            return (
+              <button
+                key={kw}
+                onClick={() => setSearchQuery(isActive ? '' : kw)}
+                className={`px-2.5 py-1 text-xs border transition-colors ${
+                  isActive
+                    ? 'bg-stone-900 text-white border-stone-900'
+                    : 'bg-white text-stone-600 border-stone-200 hover:border-stone-800'
+                }`}
+              >
+                {kw}
+              </button>
+            );
+          })}
         </div>
 
         {/* Category Filter Tabs */}

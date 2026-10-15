@@ -74,13 +74,26 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onNavigate })
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* Navigation Breadcrumb Bar */}
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-stone-200 pb-3 sm:pb-4 mb-6 sm:mb-8 text-xs">
-          <button
-            onClick={() => onNavigate('/')}
-            className="inline-flex items-center gap-1.5 text-stone-600 hover:text-stone-950 transition-colors py-1 min-h-[36px]"
-          >
-            <ArrowLeft className="w-3.5 h-3.5" />
-            <span>Return to journal</span>
-          </button>
+          <nav aria-label="Breadcrumb" className="inline-flex items-center gap-1.5 text-stone-600">
+            <button
+              onClick={() => onNavigate('/')}
+              className="inline-flex items-center gap-1 hover:text-stone-950 transition-colors py-1 min-h-[36px]"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>Journal</span>
+            </button>
+            <span className="text-stone-300" aria-hidden="true">/</span>
+            <button
+              onClick={() => onNavigate(`/category/${article.categorySlug}/`)}
+              className="hover:text-stone-950 transition-colors py-1 min-h-[36px]"
+            >
+              {article.categoryName}
+            </button>
+            <span className="text-stone-300 hidden sm:inline" aria-hidden="true">/</span>
+            <span className="text-stone-900 font-medium hidden sm:inline truncate max-w-[220px]">
+              {article.title}
+            </span>
+          </nav>
 
           <div className="flex items-center gap-3 sm:gap-4 text-stone-500">
             <div className="flex items-center gap-1 bg-stone-100/80 px-2 py-0.5 border border-stone-200/80">
@@ -161,7 +174,7 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onNavigate })
             <span className="font-medium text-stone-900">{article.author}</span>
             <span className="text-stone-400">({article.authorRole})</span>
             <span aria-hidden="true" className="text-stone-300">·</span>
-            <span>{article.date}</span>
+            <time dateTime={article.datePublished || '2026-10-12T08:00:00Z'}>{article.date}</time>
             <span aria-hidden="true" className="text-stone-300">·</span>
             <span>{article.readTime}</span>
           </div>
@@ -231,8 +244,8 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onNavigate })
           )}
         </div>
 
-        {/* Clean Metadata Tags (Zero-Pill discipline) */}
-        <div className="pt-8 border-t border-stone-200 mt-12">
+        {/* Clean Metadata Tags & Editorial Keywords */}
+        <div className="pt-8 border-t border-stone-200 mt-12 space-y-3">
           <div className="flex flex-wrap items-center gap-2 text-xs text-stone-500">
             <span className="uppercase tracking-widest font-medium text-stone-400">Filed under:</span>
             {article.tags.map((tag, i) => (
@@ -247,47 +260,80 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onNavigate })
               </React.Fragment>
             ))}
           </div>
+
+          {article.seoKeywords && article.seoKeywords.length > 0 && (
+            <div className="flex flex-wrap items-center gap-2 text-[11px] text-stone-500 pt-1">
+              <span className="font-mono uppercase tracking-widest text-stone-400 text-[10px]">Keywords:</span>
+              {article.seoKeywords.map((kw, i) => (
+                <React.Fragment key={kw}>
+                  <button
+                    onClick={() => onNavigate(`/archive/?q=${encodeURIComponent(kw)}`)}
+                    className="hover:text-stone-900 transition-colors underline decoration-stone-300 underline-offset-2"
+                  >
+                    {kw}
+                  </button>
+                  {i < (article.seoKeywords?.length ?? 0) - 1 && <span aria-hidden="true" className="text-stone-300">·</span>}
+                </React.Fragment>
+              ))}
+            </div>
+          )}
         </div>
 
-        {/* Related Stories in Department */}
+        {/* Related Stories in Department & Topical Network */}
         {(() => {
-          const related = ARTICLES.filter(
-            (a) => a.id !== article.id && a.categorySlug === article.categorySlug
-          ).slice(0, 2);
-          const fallbackRelated = related.length > 0 ? related : ARTICLES.filter((a) => a.id !== article.id).slice(0, 2);
+          let related: typeof ARTICLES = [];
+          if (article.relatedSlugs && article.relatedSlugs.length > 0) {
+            related = ARTICLES.filter((a) => article.relatedSlugs?.includes(a.slug));
+          }
+          if (related.length === 0) {
+            related = ARTICLES.filter(
+              (a) => a.id !== article.id && a.categorySlug === article.categorySlug
+            ).slice(0, 3);
+          }
+          if (related.length < 3) {
+            const extra = ARTICLES.filter(
+              (a) => a.id !== article.id && !related.some((r) => r.id === a.id)
+            ).slice(0, 3 - related.length);
+            related = [...related, ...extra];
+          }
 
           return (
             <div className="pt-10 border-t border-stone-200 mt-12">
-              <div className="text-[11px] font-sans uppercase tracking-[0.2em] text-stone-400 mb-6 font-semibold">
-                More in {article.categoryName}
+              <div className="text-[11px] font-sans uppercase tracking-[0.2em] text-stone-400 mb-6 font-semibold flex items-center justify-between">
+                <span>Related Inquiries · {article.categoryName}</span>
+                <button
+                  onClick={() => onNavigate(`/category/${article.categorySlug}/`)}
+                  className="hover:text-stone-900 transition-colors underline font-normal lowercase"
+                >
+                  view department index &rarr;
+                </button>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {fallbackRelated.map((rel) => (
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                {related.slice(0, 3).map((rel) => (
                   <article
                     key={rel.id}
                     onClick={() => onNavigate(`/journal/${rel.slug}/`)}
-                    className="group cursor-pointer flex gap-4 p-3 bg-stone-50 border border-stone-200/80 hover:border-stone-900 transition-colors"
+                    className="group cursor-pointer flex flex-col justify-between p-3.5 bg-stone-50 border border-stone-200/80 hover:border-stone-900 transition-colors"
                   >
-                    <div className="w-20 h-16 shrink-0 overflow-hidden bg-stone-950">
-                      <img
-                        src={rel.image}
-                        alt={rel.imageAlt}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        loading="lazy"
-                      />
+                    <div>
+                      <div className="w-full aspect-[16/10] overflow-hidden bg-stone-950 mb-3">
+                        <img
+                          src={rel.image}
+                          alt={rel.imageAlt}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div className="text-[10px] font-mono text-stone-500 uppercase mb-1">
+                        {rel.categoryName} · {rel.number}
+                      </div>
+                      <h4 className="font-editorial-serif text-sm font-medium text-stone-950 group-hover:text-stone-700 line-clamp-2 leading-snug">
+                        {rel.title}
+                      </h4>
                     </div>
-                    <div className="min-w-0 flex-1 flex flex-col justify-between">
-                      <div>
-                        <div className="text-[10px] font-mono text-stone-500 uppercase">
-                          {rel.issue}
-                        </div>
-                        <h4 className="font-editorial-serif text-sm font-medium text-stone-950 group-hover:text-stone-700 line-clamp-2 leading-snug">
-                          {rel.title}
-                        </h4>
-                      </div>
-                      <div className="text-[11px] text-stone-400 font-editorial-body pt-1">
-                        {rel.readTime}
-                      </div>
+                    <div className="text-[11px] text-stone-400 font-editorial-body pt-3 mt-2 border-t border-stone-200/60 flex items-center justify-between">
+                      <span>{rel.readTime}</span>
+                      <span className="group-hover:translate-x-0.5 transition-transform">&rarr;</span>
                     </div>
                   </article>
                 ))}

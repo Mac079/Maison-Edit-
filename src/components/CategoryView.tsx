@@ -39,13 +39,17 @@ export const CategoryView: React.FC<CategoryViewProps> = ({ category, onNavigate
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
       {/* Breadcrumb Navigation */}
       <div className="border-b border-stone-200 pb-3 mb-6 sm:mb-8 text-xs flex items-center justify-between">
-        <button
-          onClick={() => onNavigate('/')}
-          className="inline-flex items-center gap-1.5 text-stone-600 hover:text-stone-950 transition-colors py-1 min-h-[36px]"
-        >
-          <ArrowLeft className="w-3.5 h-3.5" />
-          <span>Return to journal</span>
-        </button>
+        <nav aria-label="Breadcrumb" className="inline-flex items-center gap-1.5 text-stone-600">
+          <button
+            onClick={() => onNavigate('/')}
+            className="inline-flex items-center gap-1 hover:text-stone-950 transition-colors py-1 min-h-[36px]"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+            <span>Journal</span>
+          </button>
+          <span className="text-stone-300" aria-hidden="true">/</span>
+          <span className="text-stone-900 font-medium">{category.name}</span>
+        </nav>
         <span className="font-mono text-stone-500 uppercase tracking-widest text-[11px]">
           {categoryArticles.length} {categoryArticles.length === 1 ? 'Essay' : 'Essays'} in Vol. XIV
         </span>
@@ -59,9 +63,27 @@ export const CategoryView: React.FC<CategoryViewProps> = ({ category, onNavigate
         <h1 className="text-3xl sm:text-5xl lg:text-6xl font-editorial-serif font-medium text-stone-950 mb-4 tracking-tight">
           {category.name}
         </h1>
-        <p className="text-base sm:text-lg text-stone-600 max-w-2xl font-editorial-body leading-relaxed">
+        <p className="text-base sm:text-lg text-stone-600 max-w-2xl font-editorial-body leading-relaxed mb-6">
           {category.description}
         </p>
+
+        {/* Department Keyword Topics */}
+        {category.keywords && category.keywords.length > 0 && (
+          <div className="flex flex-wrap items-center gap-2 pt-3 border-t border-stone-200/80 text-xs text-stone-500">
+            <span className="font-mono uppercase tracking-widest text-stone-400 text-[10px]">Department Topics:</span>
+            {category.keywords.map((kw, i) => (
+              <React.Fragment key={kw}>
+                <button
+                  onClick={() => onNavigate(`/archive/?q=${encodeURIComponent(kw)}`)}
+                  className="hover:text-stone-950 transition-colors underline decoration-stone-300 underline-offset-2"
+                >
+                  {kw}
+                </button>
+                {i < (category.keywords?.length ?? 0) - 1 && <span aria-hidden="true" className="text-stone-300">·</span>}
+              </React.Fragment>
+            ))}
+          </div>
+        )}
       </div>
 
       {categoryArticles.length === 0 ? (
