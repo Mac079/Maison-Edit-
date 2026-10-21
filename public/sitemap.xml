@@ -2,109 +2,109 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://maisonedit.com/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <loc>https://maison-edit-opal.vercel.app/</loc>
+    <lastmod>2026-10-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://maisonedit.com/images/paris-atelier-couture-gown-cover.jpg</image:loc>
+      <image:loc>https://maison-edit-opal.vercel.app/images/paris-atelier-couture-gown-cover.webp</image:loc>
       <image:title>Maison Edit Luxury Fashion Journal &amp; Haute Couture Archive</image:title>
       <image:caption>Cover editorial showcasing archival haute couture gown in Paris atelier</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://maisonedit.com/journal/quiet-luxury-new-guard/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <loc>https://maison-edit-opal.vercel.app/journal/quiet-luxury-new-guard/</loc>
+    <lastmod>2026-10-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://maisonedit.com/journal/italian-tailoring-modern-power/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <loc>https://maison-edit-opal.vercel.app/journal/italian-tailoring-modern-power/</loc>
+    <lastmod>2026-10-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://maisonedit.com/journal/luxury-handbag-craftsmanship/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <loc>https://maison-edit-opal.vercel.app/journal/luxury-handbag-craftsmanship/</loc>
+    <lastmod>2026-10-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://maisonedit.com/journal/fashion-runway-shows-matter/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <loc>https://maison-edit-opal.vercel.app/journal/fashion-runway-shows-matter/</loc>
+    <lastmod>2026-10-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://maisonedit.com/journal/heritage-fashion-houses-reinvention/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <loc>https://maison-edit-opal.vercel.app/journal/heritage-fashion-houses-reinvention/</loc>
+    <lastmod>2026-10-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://maisonedit.com/journal/red-carpet-fashion-dressing/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <loc>https://maison-edit-opal.vercel.app/journal/red-carpet-fashion-dressing/</loc>
+    <lastmod>2026-10-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://maisonedit.com/journal/luxury-boutique-future/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <loc>https://maison-edit-opal.vercel.app/journal/luxury-boutique-future/</loc>
+    <lastmod>2026-10-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://maisonedit.com/journal/collecting-vintage-couture/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <loc>https://maison-edit-opal.vercel.app/journal/collecting-vintage-couture/</loc>
+    <lastmod>2026-10-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://maisonedit.com/journal/sustainable-luxury-fashion-materials/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <loc>https://maison-edit-opal.vercel.app/journal/sustainable-luxury-fashion-materials/</loc>
+    <lastmod>2026-10-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://maisonedit.com/journal/luxury-watches-and-jewelry/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <loc>https://maison-edit-opal.vercel.app/journal/luxury-watches-and-jewelry/</loc>
+    <lastmod>2026-10-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://maisonedit.com/category/luxury-fashion-houses/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <loc>https://maison-edit-opal.vercel.app/category/luxury-fashion-houses/</loc>
+    <lastmod>2026-10-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://maisonedit.com/category/fashion-runway/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <loc>https://maison-edit-opal.vercel.app/category/fashion-runway/</loc>
+    <lastmod>2026-10-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://maisonedit.com/category/luxury-craftsmanship/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <loc>https://maison-edit-opal.vercel.app/category/luxury-craftsmanship/</loc>
+    <lastmod>2026-10-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://maisonedit.com/category/luxury-objects/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <loc>https://maison-edit-opal.vercel.app/category/luxury-objects/</loc>
+    <lastmod>2026-10-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://maisonedit.com/category/fashion-culture/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <loc>https://maison-edit-opal.vercel.app/category/fashion-culture/</loc>
+    <lastmod>2026-10-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://maisonedit.com/archive/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <loc>https://maison-edit-opal.vercel.app/archive/</loc>
+    <lastmod>2026-10-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>

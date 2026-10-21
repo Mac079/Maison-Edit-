@@ -3,16 +3,26 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, lazy, Suspense } from 'react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { HomeJournal } from './components/HomeJournal';
-import { ArticleView } from './components/ArticleView';
-import { CategoryView } from './components/CategoryView';
-import { ArchiveView } from './components/ArchiveView';
-import { NotFoundView } from './components/NotFoundView';
-import { DiagnosticReport } from './components/DiagnosticReport';
 import { ARTICLES, CATEGORIES, Article, Category } from './data/articles';
+
+// Dynamic code-splitting for non-homepage routes & diagnostics (saves ~47 KiB unused JS)
+const ArticleView = lazy(() => import('./components/ArticleView').then(m => ({ default: m.ArticleView })));
+const CategoryView = lazy(() => import('./components/CategoryView').then(m => ({ default: m.CategoryView })));
+const ArchiveView = lazy(() => import('./components/ArchiveView').then(m => ({ default: m.ArchiveView })));
+const NotFoundView = lazy(() => import('./components/NotFoundView').then(m => ({ default: m.NotFoundView })));
+const DiagnosticReport = lazy(() => import('./components/DiagnosticReport').then(m => ({ default: m.DiagnosticReport })));
+
+const ViewFallback = () => (
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center animate-pulse" aria-hidden="true">
+    <div className="h-4 bg-stone-200/80 w-32 mx-auto mb-4"></div>
+    <div className="h-8 bg-stone-200/80 w-64 sm:w-96 mx-auto mb-6"></div>
+    <div className="h-48 bg-stone-200/50 max-w-3xl mx-auto"></div>
+  </div>
+);
 
 export default function App() {
   const [currentPath, setCurrentPath] = useState<string>(() => {
@@ -82,19 +92,20 @@ export default function App() {
 
   // Update dynamic document title, meta tags, and JSON-LD schema for SEO
   useEffect(() => {
+    const SITE_ORIGIN = 'https://maison-edit-opal.vercel.app';
     let title = 'Maison Edit | Luxury Fashion Journal & Haute Couture Archive';
     let desc = 'An independent luxury fashion journal covering heritage houses, Italian tailoring, runway culture, craftsmanship, and enduring style stories.';
     let keywords = 'haute couture, luxury fashion, artisan craftsmanship, runway collections, heritage houses, Maison Edit, fashion journalism, Italian tailoring, sartorial elegance, quiet luxury, bespoke tailoring, saddle stitch, leathercraft atelier, vintage couture archive, textile conservation, biomaterials, high horology, haute joaillerie';
-    let ogImage = 'https://maisonedit.com/images/paris-atelier-couture-gown-cover.jpg';
+    let ogImage = `${SITE_ORIGIN}/images/paris-atelier-couture-gown-cover.webp`;
     let ogType = 'website';
-    let canonicalUrl = `https://maisonedit.com${pathname === '/' ? '/' : `${pathname}/`}`;
+    let canonicalUrl = `${SITE_ORIGIN}${pathname === '/' ? '/' : `${pathname}/`}`;
     let dynamicSchema: object | null = null;
 
     if (matchedArticle) {
       title = matchedArticle.seoTitle || `${matchedArticle.title} | Maison Edit`;
       desc = matchedArticle.seoDescription || matchedArticle.subtitle;
       keywords = (matchedArticle.seoKeywords || matchedArticle.tags).join(', ');
-      ogImage = matchedArticle.image.startsWith('http') ? matchedArticle.image : `https://maisonedit.com${matchedArticle.image}`;
+      ogImage = matchedArticle.image.startsWith('http') ? matchedArticle.image : `${SITE_ORIGIN}${matchedArticle.image}`;
       ogType = 'article';
 
       dynamicSchema = {
@@ -105,9 +116,9 @@ export default function App() {
             '@id': `${canonicalUrl}#article`,
             'isPartOf': {
               '@type': 'WebSite',
-              '@id': 'https://maisonedit.com/#website',
+              '@id': `${SITE_ORIGIN}/#website`,
               'name': 'Maison Edit',
-              'url': 'https://maisonedit.com/',
+              'url': `${SITE_ORIGIN}/`,
             },
             'headline': matchedArticle.title,
             'alternativeHeadline': matchedArticle.subtitle,
@@ -124,12 +135,12 @@ export default function App() {
             },
             'publisher': {
               '@type': 'NewsMediaOrganization',
-              '@id': 'https://maisonedit.com/#organization',
+              '@id': `${SITE_ORIGIN}/#organization`,
               'name': 'Maison Edit Publishing Group',
-              'url': 'https://maisonedit.com/',
+              'url': `${SITE_ORIGIN}/`,
               'logo': {
                 '@type': 'ImageObject',
-                'url': 'https://maisonedit.com/images/paris-atelier-couture-gown-cover.jpg',
+                'url': `${SITE_ORIGIN}/images/paris-atelier-couture-gown-cover.webp`,
               },
             },
             'articleSection': matchedArticle.categoryName,
@@ -144,13 +155,13 @@ export default function App() {
                 '@type': 'ListItem',
                 'position': 1,
                 'name': 'Home',
-                'item': 'https://maisonedit.com/',
+                'item': `${SITE_ORIGIN}/`,
               },
               {
                 '@type': 'ListItem',
                 'position': 2,
                 'name': matchedArticle.categoryName,
-                'item': `https://maisonedit.com/category/${matchedArticle.categorySlug}/`,
+                'item': `${SITE_ORIGIN}/category/${matchedArticle.categorySlug}/`,
               },
               {
                 '@type': 'ListItem',
@@ -178,7 +189,7 @@ export default function App() {
             'description': desc,
             'inLanguage': 'en-US',
             'isPartOf': {
-              '@id': 'https://maisonedit.com/#website',
+              '@id': `${SITE_ORIGIN}/#website`,
             },
           },
           {
@@ -189,7 +200,7 @@ export default function App() {
                 '@type': 'ListItem',
                 'position': 1,
                 'name': 'Home',
-                'item': 'https://maisonedit.com/',
+                'item': `${SITE_ORIGIN}/`,
               },
               {
                 '@type': 'ListItem',
@@ -279,29 +290,31 @@ export default function App() {
       <main className="flex-1">
         {isHome && <HomeJournal onNavigate={navigate} />}
 
-        {matchedArticle && (
-          <ArticleView article={matchedArticle} onNavigate={navigate} />
-        )}
+        <Suspense fallback={<ViewFallback />}>
+          {matchedArticle && (
+            <ArticleView article={matchedArticle} onNavigate={navigate} />
+          )}
 
-        {matchedCategory && (
-          <CategoryView category={matchedCategory} onNavigate={navigate} />
-        )}
+          {matchedCategory && (
+            <CategoryView category={matchedCategory} onNavigate={navigate} />
+          )}
 
-        {isArchive && (
-          <ArchiveView
-            onNavigate={navigate}
-            initialQuery={initialSearchQuery}
-            initialSaved={initialSaved}
-          />
-        )}
+          {isArchive && (
+            <ArchiveView
+              onNavigate={navigate}
+              initialQuery={initialSearchQuery}
+              initialSaved={initialSaved}
+            />
+          )}
 
-        {isNotFound && (
-          <NotFoundView
-            currentPath={currentPath}
-            onNavigate={navigate}
-            onOpenDiagnostics={() => setIsDiagnosticOpen(true)}
-          />
-        )}
+          {isNotFound && (
+            <NotFoundView
+              currentPath={currentPath}
+              onNavigate={navigate}
+              onOpenDiagnostics={() => setIsDiagnosticOpen(true)}
+            />
+          )}
+        </Suspense>
       </main>
 
       <Footer
@@ -309,12 +322,16 @@ export default function App() {
         onOpenDiagnostics={() => setIsDiagnosticOpen(true)}
       />
 
-      {/* Interactive System Diagnostic Monitor */}
-      <DiagnosticReport
-        isOpen={isDiagnosticOpen}
-        onClose={() => setIsDiagnosticOpen(false)}
-        onNavigate={navigate}
-      />
+      {/* Interactive System Diagnostic Monitor (lazy loaded on demand) */}
+      {isDiagnosticOpen && (
+        <Suspense fallback={null}>
+          <DiagnosticReport
+            isOpen={isDiagnosticOpen}
+            onClose={() => setIsDiagnosticOpen(false)}
+            onNavigate={navigate}
+          />
+        </Suspense>
+      )}
     </div>
   );
 }

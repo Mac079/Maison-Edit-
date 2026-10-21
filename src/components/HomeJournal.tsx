@@ -87,6 +87,10 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
                   <img
                     src={coverStory.image}
                     alt={coverStory.imageAlt}
+                    width="1200"
+                    height="750"
+                    fetchPriority="high"
+                    decoding="async"
                     className="w-full h-full object-cover object-center block transition-transform duration-700 ease-out group-hover:scale-105"
                     loading="eager"
                     referrerPolicy="no-referrer"
@@ -96,7 +100,7 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
                   </div>
                   <button
                     onClick={(e) => toggleBookmark(e, coverStory.id, coverStory.title)}
-                    className="absolute top-3 right-3 p-2 bg-stone-950/80 hover:bg-stone-950 text-stone-200 transition-colors"
+                    className="absolute top-3 right-3 min-w-[44px] min-h-[44px] flex items-center justify-center bg-stone-950/80 hover:bg-stone-950 text-stone-200 transition-colors"
                     aria-label="Save cover story"
                   >
                     {bookmarkedIds.includes(coverStory.id) ? (
@@ -108,7 +112,7 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
                 </div>
 
                 <div className="space-y-2.5 sm:space-y-3">
-                  <div className="text-xs uppercase tracking-widest text-stone-500 font-semibold flex items-center gap-2">
+                  <div className="text-xs uppercase tracking-widest text-stone-700 font-semibold flex items-center gap-2">
                     <span>{coverStory.categoryName}</span>
                     <span aria-hidden="true">·</span>
                     <span>The Autumn Salon</span>
@@ -118,15 +122,15 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
                     {coverStory.title}
                   </h1>
 
-                  <p className="text-stone-600 font-editorial-body text-sm sm:text-base lg:text-lg leading-relaxed max-w-3xl">
+                  <p className="text-stone-700 font-editorial-body text-sm sm:text-base lg:text-lg leading-relaxed max-w-3xl">
                     {coverStory.subtitle}
                   </p>
                 </div>
               </div>
 
-              <div className="pt-4 mt-4 border-t border-stone-200/80 flex items-center justify-between text-xs text-stone-500">
+              <div className="pt-4 mt-4 border-t border-stone-200/80 flex items-center justify-between text-xs text-stone-600">
                 <div className="flex items-center gap-2">
-                  <span className="text-stone-950 font-medium">{coverStory.author}</span>
+                  <span className="text-stone-950 font-semibold">{coverStory.author}</span>
                   <span>·</span>
                   <span>{coverStory.readTime}</span>
                 </div>
@@ -140,10 +144,10 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
             <div className="lg:col-span-4 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-stone-200 lg:pl-8 pt-8 lg:pt-0">
               <div>
                 <div className="flex items-center justify-between border-b border-stone-900 pb-2 mb-4">
-                  <span className="text-xs uppercase tracking-widest font-bold text-stone-950">
+                  <h2 className="text-xs uppercase tracking-widest font-bold text-stone-950">
                     The Runway Dispatch
-                  </span>
-                  <span className="text-[10px] uppercase tracking-wider text-stone-500 font-mono">
+                  </h2>
+                  <span className="text-[10px] uppercase tracking-wider text-stone-600 font-mono">
                     Latest Dispatches
                   </span>
                 </div>
@@ -156,8 +160,8 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
                       className="group cursor-pointer py-4 sm:py-5 first:pt-2 flex flex-col justify-between"
                     >
                       <div>
-                        <div className="flex items-center justify-between text-[11px] text-stone-500 mb-1.5 font-mono">
-                          <span className="uppercase tracking-wider text-stone-700 font-semibold">
+                        <div className="flex items-center justify-between text-[11px] text-stone-600 mb-1.5 font-mono">
+                          <span className="uppercase tracking-wider text-stone-800 font-semibold">
                             {art.categoryName}
                           </span>
                           <span>{idx === 0 ? '2h ago' : idx === 1 ? '5h ago' : 'Yesterday'}</span>
@@ -167,16 +171,17 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
                           {art.title}
                         </h3>
 
-                        <p className="text-xs sm:text-sm text-stone-600 line-clamp-2 font-editorial-body leading-relaxed mb-3">
+                        <p className="text-xs sm:text-sm text-stone-700 line-clamp-2 font-editorial-body leading-relaxed mb-3">
                           {art.subtitle}
                         </p>
                       </div>
 
-                      <div className="flex items-center justify-between text-xs text-stone-500 pt-1">
+                      <div className="flex items-center justify-between text-xs text-stone-600 pt-1">
                         <span>By {art.author}</span>
                         <button
                           onClick={(e) => toggleBookmark(e, art.id, art.title)}
-                          className="p-1 hover:text-stone-950 text-stone-400"
+                          className="min-w-[44px] min-h-[44px] -mr-2 flex items-center justify-center hover:text-stone-950 text-stone-600"
+                          aria-label={`Save story: ${art.title}`}
                           title="Save story"
                         >
                           {bookmarkedIds.includes(art.id) ? (
@@ -194,7 +199,7 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
               <div className="pt-4 border-t border-stone-200 mt-2">
                 <button
                   onClick={() => onNavigate('/archive/')}
-                  className="w-full py-2.5 text-center text-xs uppercase tracking-widest font-semibold bg-stone-900 text-stone-100 hover:bg-stone-800 transition-colors flex items-center justify-center gap-1.5"
+                  className="w-full min-h-[44px] py-2.5 text-center text-xs uppercase tracking-widest font-semibold bg-stone-900 text-stone-100 hover:bg-stone-800 transition-colors flex items-center justify-center gap-1.5"
                 >
                   <span>Explore Archive Dispatch</span>
                   <ArrowRight className="w-3 h-3" />
@@ -210,7 +215,7 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
         <section aria-label="Runway Collections" className="mb-14 sm:mb-20">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-stone-900 pb-3 mb-6 sm:mb-8 gap-2">
             <div>
-              <div className="text-[11px] font-sans uppercase tracking-[0.2em] text-stone-500 font-semibold mb-1">
+              <div className="text-[11px] font-sans uppercase tracking-[0.2em] text-stone-700 font-semibold mb-1">
                 Runway &amp; Collections
               </div>
               <h2 className="text-2xl sm:text-3xl font-editorial-serif font-medium text-stone-950">
@@ -219,7 +224,7 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
             </div>
             <button
               onClick={() => onNavigate('/category/fashion-runway/')}
-              className="text-xs uppercase tracking-widest font-semibold text-stone-900 hover:text-stone-600 transition-colors inline-flex items-center gap-1 self-start sm:self-auto"
+              className="min-h-[44px] text-xs uppercase tracking-widest font-semibold text-stone-900 hover:text-stone-600 transition-colors inline-flex items-center gap-1 self-start sm:self-auto"
             >
               <span>View All Runway</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -239,6 +244,9 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
                     <img
                       src={art.image}
                       alt={art.imageAlt}
+                      width="600"
+                      height="800"
+                      decoding="async"
                       className="w-full h-full object-cover object-center block group-hover:scale-105 transition-transform duration-500"
                       loading="lazy"
                     />
@@ -247,18 +255,18 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
                     </div>
                     <button
                       onClick={(e) => toggleBookmark(e, art.id, art.title)}
-                      className="absolute top-2.5 right-2.5 p-1.5 bg-stone-950/80 hover:bg-stone-950 text-stone-200 transition-colors"
-                      aria-label="Save story"
+                      className="absolute top-2.5 right-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center bg-stone-950/80 hover:bg-stone-950 text-stone-200 transition-colors"
+                      aria-label={`Save story: ${art.title}`}
                     >
                       {bookmarkedIds.includes(art.id) ? (
-                        <BookmarkCheck className="w-3.5 h-3.5 text-emerald-400" />
+                        <BookmarkCheck className="w-4 h-4 text-emerald-400" />
                       ) : (
-                        <Bookmark className="w-3.5 h-3.5" />
+                        <Bookmark className="w-4 h-4" />
                       )}
                     </button>
                   </div>
 
-                  <div className="text-[11px] uppercase tracking-wider text-stone-500 font-mono mb-1">
+                  <div className="text-[11px] uppercase tracking-wider text-stone-700 font-mono mb-1">
                     {art.issue}
                   </div>
 
@@ -266,12 +274,12 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
                     {art.title}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-stone-600 line-clamp-3 font-editorial-body leading-relaxed mb-4">
+                  <p className="text-xs sm:text-sm text-stone-700 line-clamp-3 font-editorial-body leading-relaxed mb-4">
                     {art.subtitle}
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-stone-200 flex items-center justify-between text-xs text-stone-500">
+                <div className="pt-3 border-t border-stone-200 flex items-center justify-between text-xs text-stone-600">
                   <span>{art.author}</span>
                   <span>{art.readTime}</span>
                 </div>
@@ -289,14 +297,14 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
         >
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-8 space-y-4">
-              <div className="text-xs font-mono uppercase tracking-[0.25em] text-stone-400">
+              <div className="text-xs font-mono uppercase tracking-[0.25em] text-stone-300">
                 In Focus · The Sartorial Statement
               </div>
               <blockquote className="text-2xl sm:text-3xl lg:text-4xl font-editorial-serif font-normal italic leading-snug text-stone-100">
                 &ldquo;True tailoring is not merely garment construction; it is an architectural dialogue between human posture and the drape of woven wool.&rdquo;
               </blockquote>
-              <div className="text-xs sm:text-sm text-stone-400 font-editorial-body">
-                From <span className="text-stone-200 font-medium">{ARTICLES[1].title}</span> by Marco Bellini, Milan
+              <div className="text-xs sm:text-sm text-stone-300 font-editorial-body">
+                From <span className="text-stone-100 font-medium">{ARTICLES[1].title}</span> by Marco Bellini, Milan
               </div>
             </div>
 
@@ -305,11 +313,14 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
                 <img
                   src={ARTICLES[1].image}
                   alt={ARTICLES[1].imageAlt}
+                  width="800"
+                  height="600"
+                  decoding="async"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                 />
               </div>
-              <span className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-stone-300 font-semibold group-hover:text-white transition-colors">
+              <span className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-stone-200 font-semibold group-hover:text-white transition-colors">
                 <span>Read Full Essay</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </span>
@@ -323,14 +334,14 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
         <section aria-label="Most Read Stories" className="mb-14 sm:mb-20 border-b border-stone-200 pb-14 sm:pb-20">
           <div className="flex flex-col sm:flex-row sm:items-baseline justify-between border-b border-stone-900 pb-3 mb-6 sm:mb-8 gap-2">
             <div>
-              <div className="text-[11px] font-sans uppercase tracking-[0.2em] text-stone-500 font-semibold mb-1">
+              <div className="text-[11px] font-sans uppercase tracking-[0.2em] text-stone-700 font-semibold mb-1">
                 The Maison Edit
               </div>
               <h2 className="text-2xl sm:text-3xl font-editorial-serif font-medium text-stone-950">
                 Most Read in This Edition
               </h2>
             </div>
-            <span className="text-xs uppercase tracking-widest text-stone-500 font-mono">
+            <span className="text-xs uppercase tracking-widest text-stone-600 font-mono">
               Curated Reader Favorites · 01 to 05
             </span>
           </div>
@@ -344,7 +355,7 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
               >
                 <div>
                   {/* Big Editorial Serif Number (Vogue Style) */}
-                  <div className="font-editorial-serif text-3xl sm:text-4xl lg:text-5xl font-light text-stone-400 group-hover:text-stone-900 transition-colors mb-2">
+                  <div className="font-editorial-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-stone-600 group-hover:text-stone-950 transition-colors mb-2">
                     0{index + 1}
                   </div>
 
@@ -352,12 +363,15 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
                     <img
                       src={art.image}
                       alt={art.imageAlt}
+                      width="600"
+                      height="375"
+                      decoding="async"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       loading="lazy"
                     />
                   </div>
 
-                  <div className="text-[10px] uppercase tracking-wider text-stone-500 font-mono mb-1">
+                  <div className="text-[10px] uppercase tracking-wider text-stone-700 font-mono mb-1 font-semibold">
                     {art.categoryName}
                   </div>
 
@@ -365,22 +379,23 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
                     {art.title}
                   </h3>
 
-                  <p className="text-xs text-stone-600 line-clamp-2 font-editorial-body leading-relaxed mb-3">
+                  <p className="text-xs text-stone-700 line-clamp-2 font-editorial-body leading-relaxed mb-3">
                     {art.subtitle}
                   </p>
                 </div>
 
-                <div className="text-[11px] text-stone-500 flex items-center justify-between pt-2 border-t border-stone-200/60">
+                <div className="text-[11px] text-stone-600 flex items-center justify-between pt-2 border-t border-stone-200/60">
                   <span>{art.readTime}</span>
                   <button
                     onClick={(e) => toggleBookmark(e, art.id, art.title)}
-                    className="p-1 hover:text-stone-950 text-stone-400"
+                    className="min-w-[44px] min-h-[44px] -mr-2 flex items-center justify-center hover:text-stone-950 text-stone-600"
+                    aria-label={`Bookmark: ${art.title}`}
                     title="Bookmark"
                   >
                     {bookmarkedIds.includes(art.id) ? (
-                      <BookmarkCheck className="w-3.5 h-3.5 text-emerald-700" />
+                      <BookmarkCheck className="w-4 h-4 text-emerald-700" />
                     ) : (
-                      <Bookmark className="w-3.5 h-3.5" />
+                      <Bookmark className="w-4 h-4" />
                     )}
                   </button>
                 </div>
@@ -396,19 +411,19 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
             <div className="lg:col-span-4">
               <div className="sticky top-28 space-y-4">
-                <div className="text-[11px] font-sans uppercase tracking-[0.2em] text-stone-500 font-semibold">
+                <div className="text-[11px] font-sans uppercase tracking-[0.2em] text-stone-700 font-semibold">
                   The Complete Reading List
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-editorial-serif font-medium text-stone-950 leading-tight">
                   Atelier Craftsmanship &amp; Objects of Heritage
                 </h2>
-                <p className="text-xs sm:text-sm text-stone-600 font-editorial-body leading-relaxed">
+                <p className="text-xs sm:text-sm text-stone-700 font-editorial-body leading-relaxed">
                   In-depth investigations into double-faced cashmere, vintage couture archives, saddlery leathercraft, and mechanical horology.
                 </p>
                 <div className="pt-2">
                   <button
                     onClick={() => onNavigate('/archive/')}
-                    className="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-semibold text-stone-950 border-b-2 border-stone-950 pb-1 hover:opacity-75 transition-opacity"
+                    className="min-h-[44px] inline-flex items-center gap-2 text-xs uppercase tracking-widest font-semibold text-stone-950 border-b-2 border-stone-950 pb-1 hover:opacity-75 transition-opacity"
                   >
                     <span>View All {ARTICLES.length} Essays in Archive</span>
                     <ArrowUpRight className="w-4 h-4" />
@@ -425,7 +440,7 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
                   className="group cursor-pointer py-4 sm:py-5 flex items-center justify-between hover:bg-stone-100/60 px-3 -mx-3 transition-colors gap-4"
                 >
                   <div className="flex items-center gap-3 sm:gap-4 min-w-0">
-                    <span className="font-mono text-xs text-stone-400 shrink-0 w-6">
+                    <span className="font-mono text-xs text-stone-600 shrink-0 w-6 font-semibold">
                       {art.number}
                     </span>
 
@@ -434,31 +449,35 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
                       <img
                         src={art.image}
                         alt={art.imageAlt}
+                        width="160"
+                        height="112"
+                        decoding="async"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         loading="lazy"
                       />
                     </div>
 
                     <div className="min-w-0">
-                      <div className="text-[10px] uppercase tracking-wider text-stone-500 font-mono">
+                      <div className="text-[10px] uppercase tracking-wider text-stone-700 font-mono font-semibold">
                         {art.categoryName}
                       </div>
                       <h3 className="font-editorial-serif text-base sm:text-lg font-medium text-stone-950 group-hover:text-stone-700 transition-colors leading-snug line-clamp-1">
                         {art.title}
                       </h3>
-                      <div className="text-xs text-stone-500 font-editorial-body hidden sm:block line-clamp-1">
+                      <div className="text-xs text-stone-600 font-editorial-body hidden sm:block line-clamp-1">
                         {art.subtitle}
                       </div>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-2 shrink-0">
-                    <span className="text-xs text-stone-500 font-mono hidden md:inline">
+                    <span className="text-xs text-stone-600 font-mono hidden md:inline">
                       {art.readTime}
                     </span>
                     <button
                       onClick={(e) => toggleBookmark(e, art.id, art.title)}
-                      className="p-1 text-stone-400 hover:text-stone-900"
+                      className="min-w-[44px] min-h-[44px] flex items-center justify-center text-stone-600 hover:text-stone-950"
+                      aria-label={`Save story: ${art.title}`}
                       title="Save"
                     >
                       {bookmarkedIds.includes(art.id) ? (
@@ -467,7 +486,7 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
                         <Bookmark className="w-4 h-4" />
                       )}
                     </button>
-                    <ArrowRight className="w-4 h-4 text-stone-400 group-hover:text-stone-950 group-hover:translate-x-1 transition-all" />
+                    <ArrowRight className="w-4 h-4 text-stone-600 group-hover:text-stone-950 group-hover:translate-x-1 transition-all" />
                   </div>
                 </article>
               ))}
@@ -504,7 +523,7 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email address"
                   aria-label="Email address for private letter"
-                  className="flex-1 px-4 py-2.5 text-sm bg-white border border-stone-300 focus:outline-hidden focus:border-stone-900 text-stone-900 placeholder:text-stone-400 font-editorial-body"
+                  className="flex-1 px-4 py-2.5 text-sm bg-white border border-stone-300 focus:outline-hidden focus:border-stone-900 text-stone-900 placeholder:text-stone-500 font-editorial-body min-h-[44px]"
                 />
                 <button
                   type="submit"
@@ -521,25 +540,28 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
       {/* ========================================================= */}
       {/* VOGUE MOBILE FLOATING QUICK-ACTION BAR (< 768px)          */}
       {/* ========================================================= */}
-      <div className="md:hidden fixed bottom-3 left-4 right-4 z-40 bg-stone-900/95 backdrop-blur-md text-stone-100 border border-stone-700 px-4 py-2 shadow-2xl flex items-center justify-between">
+      <div className="md:hidden fixed bottom-3 left-4 right-4 z-40 bg-stone-900/95 backdrop-blur-md text-stone-100 border border-stone-700 px-4 py-1.5 shadow-2xl flex items-center justify-between">
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="flex items-center gap-1.5 text-xs text-stone-300 hover:text-white py-1"
+          className="flex items-center gap-1.5 text-xs text-stone-200 hover:text-white min-h-[44px] px-2"
+          aria-label="Back to top"
         >
           <span>Top &uarr;</span>
         </button>
-        <span className="text-stone-600">|</span>
+        <span className="text-stone-600" aria-hidden="true">|</span>
         <button
           onClick={() => onNavigate('/archive/?saved=true')}
-          className="flex items-center gap-1.5 text-xs text-stone-300 hover:text-white py-1"
+          className="flex items-center gap-1.5 text-xs text-stone-200 hover:text-white min-h-[44px] px-2"
+          aria-label={`View ${bookmarkedIds.length} saved reading list articles`}
         >
           <Bookmark className="w-3.5 h-3.5 text-emerald-400" />
           <span>Saved ({bookmarkedIds.length})</span>
         </button>
-        <span className="text-stone-600">|</span>
+        <span className="text-stone-600" aria-hidden="true">|</span>
         <button
           onClick={() => onNavigate('/archive/')}
-          className="flex items-center gap-1.5 text-xs text-stone-300 hover:text-white py-1"
+          className="flex items-center gap-1.5 text-xs text-stone-200 hover:text-white min-h-[44px] px-2"
+          aria-label="Browse full archive index"
         >
           <span>Archive</span>
         </button>

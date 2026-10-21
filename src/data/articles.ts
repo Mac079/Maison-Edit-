@@ -1,13 +1,13 @@
-import imgParisCouture from '../assets/images/paris_atelier_couture_1791781516357.jpg';
-import imgItalianTailoring from '../assets/images/italian_tailoring_milan_1791781530328.jpg';
-import imgHandbagCraft from '../assets/images/handbag_artisan_atelier_1791781541990.jpg';
-import imgRunway from '../assets/images/runway_concrete_hall_1791781554911.jpg';
-import imgHeritageArchive from '../assets/images/heritage_archive_atelier_1791782945181.jpg';
-import imgRedCarpet from '../assets/images/red_carpet_couture_1791782957457.jpg';
-import imgLuxuryBoutique from '../assets/images/luxury_boutique_interior_1791782968222.jpg';
-import imgVintageCouture from '../assets/images/vintage_couture_archive_1791781694716.jpg';
-import imgBiomaterials from '../assets/images/sustainable_biomaterial_textile_1791782978374.jpg';
-import imgHorology from '../assets/images/luxury_horology_timepiece_1791781705920.jpg';
+import imgParisCouture from '../assets/images/paris_atelier_couture_1791781516357.webp';
+import imgItalianTailoring from '../assets/images/italian_tailoring_milan_1791781530328.webp';
+import imgHandbagCraft from '../assets/images/handbag_artisan_atelier_1791781541990.webp';
+import imgRunway from '../assets/images/runway_concrete_hall_1791781554911.webp';
+import imgHeritageArchive from '../assets/images/heritage_archive_atelier_1791782945181.webp';
+import imgRedCarpet from '../assets/images/red_carpet_couture_1791782957457.webp';
+import imgLuxuryBoutique from '../assets/images/luxury_boutique_interior_1791782968222.webp';
+import imgVintageCouture from '../assets/images/vintage_couture_archive_1791781694716.webp';
+import imgBiomaterials from '../assets/images/sustainable_biomaterial_textile_1791782978374.webp';
+import imgHorology from '../assets/images/luxury_horology_timepiece_1791781705920.webp';
 
 export interface ArticleSection {
   heading?: string;

@@ -84,10 +84,10 @@ export const NotFoundView: React.FC<NotFoundViewProps> = ({
       {/* Main Pages Directory */}
       <div className="border-t border-stone-300 pt-12 mb-16">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
-          <h2 className="text-xs uppercase tracking-widest text-stone-500 font-mono font-medium">
+          <h2 className="text-xs uppercase tracking-widest text-stone-700 font-mono font-semibold">
             Main Editorial Departments
           </h2>
-          <span className="text-xs text-stone-400 font-editorial-body">
+          <span className="text-xs text-stone-600 font-editorial-body">
             Five departments covering heritage, craft, runway, and culture
           </span>
         </div>
@@ -101,17 +101,17 @@ export const NotFoundView: React.FC<NotFoundViewProps> = ({
               className="p-5 bg-white border border-stone-200/90 hover:border-stone-900 transition-colors group flex flex-col justify-between"
             >
               <div>
-                <div className="text-[10px] font-mono uppercase tracking-widest text-stone-400 mb-1">
+                <div className="text-[10px] font-mono uppercase tracking-widest text-stone-700 font-semibold mb-1">
                   Department · {cat.shortName}
                 </div>
                 <h3 className="font-editorial-serif text-lg font-medium text-stone-950 group-hover:text-stone-700 transition-colors mb-2">
                   {cat.name}
                 </h3>
-                <p className="text-xs text-stone-600 line-clamp-2 leading-relaxed">
+                <p className="text-xs text-stone-700 line-clamp-2 leading-relaxed">
                   {cat.description}
                 </p>
               </div>
-              <div className="pt-4 mt-3 border-t border-stone-100 flex items-center justify-between text-xs font-mono text-stone-400 group-hover:text-stone-900">
+              <div className="pt-4 mt-3 border-t border-stone-100 flex items-center justify-between text-xs font-mono text-stone-600 group-hover:text-stone-900">
                 <span>Explore Department</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </div>
@@ -125,18 +125,18 @@ export const NotFoundView: React.FC<NotFoundViewProps> = ({
             className="p-5 bg-[#f4f1ea] border border-stone-300/80 hover:border-stone-900 transition-colors group flex flex-col justify-between"
           >
             <div>
-              <div className="text-[10px] font-mono uppercase tracking-widest text-stone-500 mb-1 flex items-center gap-1.5">
-                <Bookmark className="w-3 h-3 text-stone-700" />
+              <div className="text-[10px] font-mono uppercase tracking-widest text-stone-700 font-semibold mb-1 flex items-center gap-1.5">
+                <Bookmark className="w-3 h-3 text-stone-800" />
                 <span>Reading List</span>
               </div>
               <h3 className="font-editorial-serif text-lg font-medium text-stone-950 group-hover:text-stone-700 transition-colors mb-2">
                 Saved Articles
               </h3>
-              <p className="text-xs text-stone-600 leading-relaxed">
+              <p className="text-xs text-stone-700 leading-relaxed">
                 Access your bookmarked investigations, reading notes, and offline reading list.
               </p>
             </div>
-            <div className="pt-4 mt-3 border-t border-stone-200 flex items-center justify-between text-xs font-mono text-stone-500 group-hover:text-stone-900">
+            <div className="pt-4 mt-3 border-t border-stone-200 flex items-center justify-between text-xs font-mono text-stone-700 group-hover:text-stone-900">
               <span>View Bookmarks</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
             </div>
@@ -147,13 +147,13 @@ export const NotFoundView: React.FC<NotFoundViewProps> = ({
       {/* Featured Articles Recommended Reading */}
       <div className="border-t border-stone-300 pt-12">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xs uppercase tracking-widest text-stone-500 font-mono font-medium">
+          <h2 className="text-xs uppercase tracking-widest text-stone-700 font-mono font-semibold">
             Recommended Reading from Volume XIV
           </h2>
           <a
             href="/archive/"
             onClick={(e) => handleLinkClick(e, '/archive/')}
-            className="text-xs font-mono text-stone-500 hover:text-stone-900 underline underline-offset-4"
+            className="text-xs font-mono text-stone-700 hover:text-stone-900 underline underline-offset-4 font-semibold"
           >
             View all 10 essays &rarr;
           </a>
@@ -172,18 +172,21 @@ export const NotFoundView: React.FC<NotFoundViewProps> = ({
                   <img
                     src={art.image}
                     alt={art.imageAlt}
+                    width="400"
+                    height="250"
+                    decoding="async"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     loading="lazy"
                   />
                 </div>
-                <div className="text-[10px] font-mono text-stone-500 uppercase mb-1">
+                <div className="text-[10px] font-mono text-stone-700 font-semibold uppercase mb-1">
                   {art.categoryName} · {art.number}
                 </div>
                 <h3 className="font-editorial-serif text-sm font-medium text-stone-950 group-hover:text-stone-700 line-clamp-2 leading-snug">
                   {art.title}
                 </h3>
               </div>
-              <div className="text-[11px] text-stone-400 font-editorial-body pt-3 mt-2 border-t border-stone-100 flex items-center justify-between">
+              <div className="text-[11px] text-stone-600 font-editorial-body pt-3 mt-2 border-t border-stone-100 flex items-center justify-between">
                 <span>{art.readTime}</span>
                 <span className="group-hover:translate-x-0.5 transition-transform">&rarr;</span>
               </div>

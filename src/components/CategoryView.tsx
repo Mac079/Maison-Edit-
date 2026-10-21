@@ -57,29 +57,29 @@ export const CategoryView: React.FC<CategoryViewProps> = ({ category, onNavigate
 
       {/* Vogue Department Banner */}
       <div className="border-b border-stone-900 pb-8 mb-10 sm:mb-12">
-        <div className="text-[11px] font-sans uppercase tracking-[0.2em] text-stone-500 font-semibold mb-2">
+        <div className="text-[11px] font-sans uppercase tracking-[0.2em] text-stone-700 font-semibold mb-2">
           Department · {category.issueScope}
         </div>
         <h1 className="text-3xl sm:text-5xl lg:text-6xl font-editorial-serif font-medium text-stone-950 mb-4 tracking-tight">
           {category.name}
         </h1>
-        <p className="text-base sm:text-lg text-stone-600 max-w-2xl font-editorial-body leading-relaxed mb-6">
+        <p className="text-base sm:text-lg text-stone-700 max-w-2xl font-editorial-body leading-relaxed mb-6">
           {category.description}
         </p>
 
         {/* Department Keyword Topics */}
         {category.keywords && category.keywords.length > 0 && (
-          <div className="flex flex-wrap items-center gap-2 pt-3 border-t border-stone-200/80 text-xs text-stone-500">
-            <span className="font-mono uppercase tracking-widest text-stone-400 text-[10px]">Department Topics:</span>
+          <div className="flex flex-wrap items-center gap-2 pt-3 border-t border-stone-200/80 text-xs text-stone-700">
+            <span className="font-mono uppercase tracking-widest text-stone-800 text-[10px] font-semibold">Department Topics:</span>
             {category.keywords.map((kw, i) => (
               <React.Fragment key={kw}>
                 <button
                   onClick={() => onNavigate(`/archive/?q=${encodeURIComponent(kw)}`)}
-                  className="hover:text-stone-950 transition-colors underline decoration-stone-300 underline-offset-2"
+                  className="hover:text-stone-950 transition-colors underline decoration-stone-400 underline-offset-2 min-h-[32px] py-1"
                 >
                   {kw}
                 </button>
-                {i < (category.keywords?.length ?? 0) - 1 && <span aria-hidden="true" className="text-stone-300">·</span>}
+                {i < (category.keywords?.length ?? 0) - 1 && <span aria-hidden="true" className="text-stone-400">·</span>}
               </React.Fragment>
             ))}
           </div>
@@ -87,7 +87,7 @@ export const CategoryView: React.FC<CategoryViewProps> = ({ category, onNavigate
       </div>
 
       {categoryArticles.length === 0 ? (
-        <div className="py-16 text-center text-stone-500 font-editorial-body">
+        <div className="py-16 text-center text-stone-600 font-editorial-body">
           No articles filed under this department in this edition.
         </div>
       ) : (
@@ -102,6 +102,9 @@ export const CategoryView: React.FC<CategoryViewProps> = ({ category, onNavigate
                 <img
                   src={leadStory.image}
                   alt={leadStory.imageAlt}
+                  width="1200"
+                  height="750"
+                  decoding="async"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   loading="eager"
                   referrerPolicy="no-referrer"
@@ -111,8 +114,8 @@ export const CategoryView: React.FC<CategoryViewProps> = ({ category, onNavigate
                 </div>
                 <button
                   onClick={(e) => toggleBookmark(e, leadStory.id)}
-                  className="absolute top-3 right-3 p-2 bg-stone-950/80 hover:bg-stone-950 text-stone-200 transition-colors"
-                  aria-label="Save story"
+                  className="absolute top-3 right-3 min-w-[44px] min-h-[44px] flex items-center justify-center bg-stone-950/80 hover:bg-stone-950 text-stone-200 transition-colors"
+                  aria-label={`Save story: ${leadStory.title}`}
                 >
                   {bookmarkedIds.includes(leadStory.id) ? (
                     <BookmarkCheck className="w-4 h-4 text-emerald-400" />
@@ -124,20 +127,20 @@ export const CategoryView: React.FC<CategoryViewProps> = ({ category, onNavigate
 
               <div className="lg:col-span-4 flex flex-col justify-between py-1">
                 <div className="space-y-3">
-                  <div className="text-xs uppercase tracking-widest text-stone-500 font-mono">
+                  <div className="text-xs uppercase tracking-widest text-stone-700 font-mono font-semibold">
                     {leadStory.issue}
                   </div>
                   <h2 className="text-2xl sm:text-3xl font-editorial-serif font-medium text-stone-950 group-hover:text-stone-700 transition-colors leading-tight">
                     {leadStory.title}
                   </h2>
-                  <p className="text-stone-600 font-editorial-body text-sm sm:text-base leading-relaxed">
+                  <p className="text-stone-700 font-editorial-body text-sm sm:text-base leading-relaxed">
                     {leadStory.subtitle}
                   </p>
                 </div>
 
-                <div className="pt-4 border-t border-stone-200 flex items-center justify-between text-xs text-stone-500 mt-4">
+                <div className="pt-4 border-t border-stone-200 flex items-center justify-between text-xs text-stone-600 mt-4">
                   <div>
-                    <span className="text-stone-900 font-medium">{leadStory.author}</span>
+                    <span className="text-stone-950 font-semibold">{leadStory.author}</span>
                     <span className="mx-1.5">·</span>
                     <span>{leadStory.readTime}</span>
                   </div>
@@ -152,9 +155,9 @@ export const CategoryView: React.FC<CategoryViewProps> = ({ category, onNavigate
           {/* Remaining Stories in 2-column or 3-column Magazine Flow */}
           {remainingStories.length > 0 && (
             <div>
-              <div className="text-xs font-sans uppercase tracking-[0.2em] text-stone-400 mb-6 font-semibold">
+              <h2 className="text-xs font-mono uppercase tracking-[0.2em] text-stone-700 mb-6 font-semibold">
                 More in {category.shortName}
-              </div>
+              </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10">
                 {remainingStories.map((art) => (
                   <article
@@ -167,6 +170,9 @@ export const CategoryView: React.FC<CategoryViewProps> = ({ category, onNavigate
                         <img
                           src={art.image}
                           alt={art.imageAlt}
+                          width="600"
+                          height="375"
+                          decoding="async"
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                           loading="lazy"
                           referrerPolicy="no-referrer"
@@ -176,8 +182,8 @@ export const CategoryView: React.FC<CategoryViewProps> = ({ category, onNavigate
                         </div>
                         <button
                           onClick={(e) => toggleBookmark(e, art.id)}
-                          className="absolute top-2.5 right-2.5 p-1.5 bg-stone-950/80 hover:bg-stone-950 text-stone-200 transition-colors"
-                          aria-label="Save story"
+                          className="absolute top-2.5 right-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center bg-stone-950/80 hover:bg-stone-950 text-stone-200 transition-colors"
+                          aria-label={`Save story: ${art.title}`}
                         >
                           {bookmarkedIds.includes(art.id) ? (
                             <BookmarkCheck className="w-3.5 h-3.5 text-emerald-400" />
@@ -187,7 +193,7 @@ export const CategoryView: React.FC<CategoryViewProps> = ({ category, onNavigate
                         </button>
                       </div>
 
-                      <div className="text-[11px] uppercase tracking-wider text-stone-500 font-mono mb-1">
+                      <div className="text-[11px] uppercase tracking-wider text-stone-700 font-mono mb-1 font-semibold">
                         {art.issue}
                       </div>
 
@@ -195,18 +201,18 @@ export const CategoryView: React.FC<CategoryViewProps> = ({ category, onNavigate
                         {art.title}
                       </h3>
 
-                      <p className="text-stone-600 text-xs sm:text-sm font-editorial-body leading-relaxed mb-4 line-clamp-3">
+                      <p className="text-stone-700 text-xs sm:text-sm font-editorial-body leading-relaxed mb-4 line-clamp-3">
                         {art.subtitle}
                       </p>
                     </div>
 
-                    <div className="pt-3 border-t border-stone-200 flex items-center justify-between text-xs text-stone-500">
+                    <div className="pt-3 border-t border-stone-200 flex items-center justify-between text-xs text-stone-600">
                       <div>
-                        <span className="font-medium text-stone-900">{art.author}</span>
+                        <span className="font-semibold text-stone-900">{art.author}</span>
                         <span className="mx-1.5">·</span>
                         <span>{art.readTime}</span>
                       </div>
-                      <ArrowUpRight className="w-4 h-4 text-stone-400 group-hover:text-stone-900 transition-colors" />
+                      <ArrowUpRight className="w-4 h-4 text-stone-600 group-hover:text-stone-950 transition-colors" />
                     </div>
                   </article>
                 ))}

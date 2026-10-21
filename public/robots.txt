@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://maisonedit.com/sitemap.xml
+Sitemap: https://maison-edit-opal.vercel.app/sitemap.xml

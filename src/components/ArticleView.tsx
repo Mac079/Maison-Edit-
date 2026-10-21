@@ -9,9 +9,9 @@ interface ArticleViewProps {
 
 export const ArticleView: React.FC<ArticleViewProps> = ({ article, onNavigate }) => {
   const [fontSize, setFontSize] = useState<'standard' | 'large' | 'relaxed'>('standard');
-  const [scrollProgress, setScrollProgress] = useState(0);
   const [copied, setCopied] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(false);
+  const progressBarRef = React.useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -20,12 +20,24 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onNavigate })
   }, [article.id]);
 
   useEffect(() => {
+    let ticking = false;
+    const updateProgress = () => {
+      if (progressBarRef.current) {
+        const scrollY = window.scrollY;
+        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = totalHeight > 0 ? Math.min(1, Math.max(0, scrollY / totalHeight)) : 0;
+        progressBarRef.current.style.transform = `scaleX(${progress})`;
+      }
+      ticking = false;
+    };
+
     const handleScroll = () => {
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      if (totalHeight > 0) {
-        setScrollProgress((window.scrollY / totalHeight) * 100);
+      if (!ticking) {
+        window.requestAnimationFrame(updateProgress);
+        ticking = true;
       }
     };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -65,10 +77,12 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onNavigate })
 
   return (
     <div>
-      {/* Reading Progress Bar */}
+      {/* Reading Progress Bar (Hardware accelerated transform, zero reflow) */}
       <div
-        className="fixed top-0 left-0 right-0 h-1 bg-stone-900 z-50 transition-all duration-75"
-        style={{ width: `${scrollProgress}%` }}
+        ref={progressBarRef}
+        className="fixed top-0 left-0 right-0 h-1 bg-stone-900 z-50 origin-left will-change-transform"
+        style={{ transform: 'scaleX(0)' }}
+        aria-hidden="true"
       />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
@@ -170,12 +184,12 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onNavigate })
             {article.subtitle}
           </p>
 
-          <div className="flex flex-wrap items-center gap-2 text-xs text-stone-600 border-t border-b border-stone-200 py-3">
-            <span className="font-medium text-stone-900">{article.author}</span>
-            <span className="text-stone-400">({article.authorRole})</span>
-            <span aria-hidden="true" className="text-stone-300">·</span>
+          <div className="flex flex-wrap items-center gap-2 text-xs text-stone-700 border-t border-b border-stone-200 py-3">
+            <span className="font-semibold text-stone-950">{article.author}</span>
+            <span className="text-stone-600">({article.authorRole})</span>
+            <span aria-hidden="true" className="text-stone-400">·</span>
             <time dateTime={article.datePublished || '2026-10-12T08:00:00Z'}>{article.date}</time>
-            <span aria-hidden="true" className="text-stone-300">·</span>
+            <span aria-hidden="true" className="text-stone-400">·</span>
             <span>{article.readTime}</span>
           </div>
         </header>
@@ -186,12 +200,16 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onNavigate })
             <img
               src={article.image}
               alt={article.imageAlt}
+              width="1200"
+              height="750"
+              fetchPriority="high"
+              decoding="async"
               className="w-full h-full object-cover object-center block transition-transform duration-700 ease-out"
               loading="eager"
               referrerPolicy="no-referrer"
             />
           </div>
-          <figcaption className="py-2.5 sm:py-3 text-xs font-serif italic text-stone-500 border-b border-stone-200">
+          <figcaption className="py-2.5 sm:py-3 text-xs font-serif italic text-stone-600 border-b border-stone-200">
             {article.imageAlt} · Maison Edit Archival Documentation.
           </figcaption>
         </figure>
@@ -299,7 +317,7 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onNavigate })
 
           return (
             <div className="pt-10 border-t border-stone-200 mt-12">
-              <div className="text-[11px] font-sans uppercase tracking-[0.2em] text-stone-400 mb-6 font-semibold flex items-center justify-between">
+              <h2 className="text-xs font-mono uppercase tracking-[0.2em] text-stone-700 mb-6 font-semibold flex items-center justify-between">
                 <span>Related Inquiries · {article.categoryName}</span>
                 <button
                   onClick={() => onNavigate(`/category/${article.categorySlug}/`)}
@@ -307,7 +325,7 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onNavigate })
                 >
                   view department index &rarr;
                 </button>
-              </div>
+              </h2>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                 {related.slice(0, 3).map((rel) => (
                   <article
@@ -320,18 +338,21 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onNavigate })
                         <img
                           src={rel.image}
                           alt={rel.imageAlt}
+                          width="400"
+                          height="250"
+                          decoding="async"
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                           loading="lazy"
                         />
                       </div>
-                      <div className="text-[10px] font-mono text-stone-500 uppercase mb-1">
+                      <div className="text-[10px] font-mono text-stone-700 uppercase mb-1 font-semibold">
                         {rel.categoryName} · {rel.number}
                       </div>
-                      <h4 className="font-editorial-serif text-sm font-medium text-stone-950 group-hover:text-stone-700 line-clamp-2 leading-snug">
+                      <h3 className="font-editorial-serif text-sm font-medium text-stone-950 group-hover:text-stone-700 line-clamp-2 leading-snug">
                         {rel.title}
-                      </h4>
+                      </h3>
                     </div>
-                    <div className="text-[11px] text-stone-400 font-editorial-body pt-3 mt-2 border-t border-stone-200/60 flex items-center justify-between">
+                    <div className="text-[11px] text-stone-600 font-editorial-body pt-3 mt-2 border-t border-stone-200/60 flex items-center justify-between">
                       <span>{rel.readTime}</span>
                       <span className="group-hover:translate-x-0.5 transition-transform">&rarr;</span>
                     </div>

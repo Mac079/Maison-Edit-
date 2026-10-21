@@ -102,13 +102,13 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
 
       {/* Header */}
       <div className="border-b border-stone-200 pb-8 mb-8">
-        <div className="text-xs uppercase tracking-widest text-stone-500 font-medium mb-1">
+        <div className="text-xs uppercase tracking-widest text-stone-700 font-semibold mb-1">
           Complete Issue Index · Vol. XIV
         </div>
         <h1 className="text-3xl sm:text-5xl font-editorial-serif font-medium text-stone-900 mb-3">
           The Article Archive
         </h1>
-        <p className="text-stone-600 text-sm sm:text-base max-w-2xl font-editorial-body">
+        <p className="text-stone-700 text-sm sm:text-base max-w-2xl font-editorial-body">
           Explore all essays, curatorial critiques, and investigative field notes across our five editorial departments.
         </p>
       </div>
@@ -118,18 +118,19 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
         <div className="flex flex-col sm:flex-row gap-3">
           {/* Search Input */}
           <div className="relative flex-1">
-            <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-stone-400" />
+            <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-stone-600" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search essays by title, artisan, craft, or keyword..."
-              className="w-full pl-10 pr-9 py-2.5 text-sm bg-white border border-stone-300 focus:outline-hidden focus:border-stone-900 text-stone-900 placeholder:text-stone-400 min-h-[42px]"
+              aria-label="Search essays by title, artisan, craft, or keyword"
+              className="w-full pl-10 pr-9 py-2.5 text-sm bg-white border border-stone-300 focus:outline-hidden focus:border-stone-900 text-stone-900 placeholder:text-stone-500 min-h-[44px]"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-900 p-1"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-600 hover:text-stone-900 p-2 min-h-[36px] min-w-[36px] flex items-center justify-center"
                 aria-label="Clear search query"
               >
                 <X className="w-4 h-4" />
@@ -139,11 +140,12 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
 
           {/* Sort Selector */}
           <div className="flex items-center justify-between sm:justify-start gap-2 w-full sm:w-auto">
-            <span className="text-xs text-stone-500 uppercase tracking-wider shrink-0">Sort:</span>
+            <span className="text-xs text-stone-700 uppercase tracking-wider font-semibold shrink-0">Sort:</span>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
-              className="flex-1 sm:flex-initial px-3 py-2.5 text-xs bg-white border border-stone-300 focus:outline-hidden focus:border-stone-900 text-stone-900 min-h-[42px]"
+              aria-label="Sort articles by"
+              className="flex-1 sm:flex-initial px-3 py-2.5 text-xs bg-white border border-stone-300 focus:outline-hidden focus:border-stone-900 text-stone-900 min-h-[44px]"
             >
               <option value="number">Issue Sequence (01-10)</option>
               <option value="title">Title (A-Z)</option>
@@ -153,8 +155,8 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
         </div>
 
         {/* Curated Editorial Keyword Chips */}
-        <div className="flex flex-wrap items-center gap-1.5 text-xs text-stone-500">
-          <span className="font-mono text-[10px] uppercase tracking-widest text-stone-400 mr-1">Curated Inquiries:</span>
+        <div className="flex flex-wrap items-center gap-1.5 text-xs text-stone-700">
+          <span className="font-mono text-[10px] uppercase tracking-widest text-stone-800 font-semibold mr-1">Curated Inquiries:</span>
           {popularKeywords.map((kw) => {
             const isActive = searchQuery.toLowerCase() === kw.toLowerCase();
             return (
@@ -293,6 +295,9 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
                   <img
                     src={article.image}
                     alt={article.imageAlt}
+                    width="600"
+                    height="450"
+                    decoding="async"
                     className="w-full h-full object-cover object-center block transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                     referrerPolicy="no-referrer"
@@ -302,7 +307,7 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
                   </div>
                 </div>
 
-                <div className="text-xs uppercase tracking-widest text-stone-500 font-medium mb-1.5">
+                <div className="text-xs uppercase tracking-widest text-stone-700 font-semibold mb-1.5">
                   {article.categoryName} · {article.issue}
                 </div>
 
@@ -310,18 +315,18 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
                   {article.title}
                 </h2>
 
-                <p className="text-stone-600 text-xs sm:text-sm leading-relaxed mb-4 line-clamp-2 font-editorial-body">
+                <p className="text-stone-700 text-xs sm:text-sm leading-relaxed mb-4 line-clamp-2 font-editorial-body">
                   {article.subtitle}
                 </p>
               </div>
 
-              <div className="pt-3 border-t border-stone-200 flex items-center justify-between text-xs text-stone-500">
+              <div className="pt-3 border-t border-stone-200 flex items-center justify-between text-xs text-stone-600">
                 <div>
-                  <span className="font-medium text-stone-900">{article.author}</span>
+                  <span className="font-semibold text-stone-950">{article.author}</span>
                   <span className="mx-1.5">·</span>
                   <span>{article.readTime}</span>
                 </div>
-                <ArrowUpRight className="w-4 h-4 text-stone-400 group-hover:text-stone-900 transition-colors" />
+                <ArrowUpRight className="w-4 h-4 text-stone-600 group-hover:text-stone-950 transition-colors" />
               </div>
             </article>
           ))}
@@ -341,6 +346,9 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
                   <img
                     src={article.image}
                     alt={article.imageAlt}
+                    width="400"
+                    height="300"
+                    decoding="async"
                     className="w-full h-full object-cover object-center block group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
@@ -350,24 +358,24 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
                 </div>
 
                 <div className="min-w-0 flex-1">
-                  <div className="text-[11px] uppercase tracking-wider text-stone-500 mb-1">
+                  <div className="text-[11px] uppercase tracking-wider text-stone-700 font-semibold mb-1">
                     {article.categoryName} · {article.issue}
                   </div>
                   <h2 className="text-lg sm:text-xl font-editorial-serif font-medium text-stone-900 group-hover:text-stone-700 transition-colors leading-snug">
                     {article.title}
                   </h2>
-                  <p className="text-xs sm:text-sm text-stone-600 mt-1 line-clamp-2 font-editorial-body">
+                  <p className="text-xs sm:text-sm text-stone-700 mt-1 line-clamp-2 font-editorial-body">
                     {article.subtitle}
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between md:justify-end gap-6 text-xs text-stone-500 shrink-0 pt-2 md:pt-0 border-t md:border-t-0 border-stone-100">
+              <div className="flex items-center justify-between md:justify-end gap-6 text-xs text-stone-600 shrink-0 pt-2 md:pt-0 border-t md:border-t-0 border-stone-100">
                 <div className="text-left md:text-right">
-                  <div className="text-stone-900 font-medium">{article.author}</div>
-                  <div className="text-stone-400">{article.readTime}</div>
+                  <div className="text-stone-950 font-semibold">{article.author}</div>
+                  <div className="text-stone-600">{article.readTime}</div>
                 </div>
-                <div className="w-8 h-8 rounded-full border border-stone-200 group-hover:border-stone-900 flex items-center justify-center text-stone-400 group-hover:text-stone-900 transition-colors shrink-0">
+                <div className="w-8 h-8 rounded-full border border-stone-300 group-hover:border-stone-900 flex items-center justify-center text-stone-600 group-hover:text-stone-900 transition-colors shrink-0">
                   <ArrowUpRight className="w-4 h-4" />
                 </div>
               </div>
