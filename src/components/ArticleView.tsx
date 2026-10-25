@@ -85,7 +85,7 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onNavigate })
         aria-hidden="true"
       />
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-8 pb-28 sm:pt-12 sm:pb-16">
         {/* Navigation Breadcrumb Bar */}
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-stone-200 pb-3 sm:pb-4 mb-6 sm:mb-8 text-xs">
           <nav aria-label="Breadcrumb" className="inline-flex items-center gap-1.5 text-stone-600">
@@ -109,26 +109,26 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onNavigate })
             </span>
           </nav>
 
-          <div className="flex items-center gap-3 sm:gap-4 text-stone-500">
-            <div className="flex items-center gap-1 bg-stone-100/80 px-2 py-0.5 border border-stone-200/80">
-              <span className="text-[11px] uppercase tracking-wider text-stone-400 mr-0.5">Type:</span>
+          <div className="flex items-center gap-2 sm:gap-4 text-stone-500">
+            <div className="flex items-center gap-0.5 bg-stone-100/90 px-1.5 py-0.5 border border-stone-200/80">
+              <span className="text-[10px] uppercase tracking-wider text-stone-500 mr-1 font-semibold">Type:</span>
               <button
                 onClick={() => setFontSize('standard')}
-                className={`min-h-[32px] px-1.5 text-xs inline-flex items-center ${fontSize === 'standard' ? 'text-stone-950 font-bold' : 'hover:text-stone-900'}`}
+                className={`min-h-[38px] min-w-[36px] px-2 text-xs inline-flex items-center justify-center transition-colors ${fontSize === 'standard' ? 'text-stone-950 font-bold bg-white shadow-xs' : 'hover:text-stone-900 text-stone-600'}`}
                 aria-label="Standard font size"
               >
                 A
               </button>
               <button
                 onClick={() => setFontSize('large')}
-                className={`min-h-[32px] px-1.5 text-sm inline-flex items-center ${fontSize === 'large' ? 'text-stone-950 font-bold' : 'hover:text-stone-900'}`}
+                className={`min-h-[38px] min-w-[36px] px-2 text-sm inline-flex items-center justify-center transition-colors ${fontSize === 'large' ? 'text-stone-950 font-bold bg-white shadow-xs' : 'hover:text-stone-900 text-stone-600'}`}
                 aria-label="Large font size"
               >
                 A+
               </button>
               <button
                 onClick={() => setFontSize('relaxed')}
-                className={`min-h-[32px] px-1.5 text-base inline-flex items-center ${fontSize === 'relaxed' ? 'text-stone-950 font-bold' : 'hover:text-stone-900'}`}
+                className={`min-h-[38px] min-w-[36px] px-2 text-base inline-flex items-center justify-center transition-colors ${fontSize === 'relaxed' ? 'text-stone-950 font-bold bg-white shadow-xs' : 'hover:text-stone-900 text-stone-600'}`}
                 aria-label="Relaxed font size"
               >
                 A++
@@ -137,7 +137,7 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onNavigate })
 
             <button
               onClick={handleBookmark}
-              className="inline-flex items-center gap-1.5 hover:text-stone-900 transition-colors min-h-[36px] px-2 py-1"
+              className="inline-flex items-center gap-1.5 hover:text-stone-900 transition-colors min-h-[44px] px-2.5 py-1 text-xs"
               title={isBookmarked ? 'Remove bookmark' : 'Bookmark essay'}
               aria-label={isBookmarked ? 'Remove bookmark' : 'Bookmark essay'}
             >
@@ -146,17 +146,17 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onNavigate })
               ) : (
                 <Bookmark className="w-4 h-4" />
               )}
-              <span className="hidden sm:inline">{isBookmarked ? 'Saved' : 'Save'}</span>
+              <span className="hidden sm:inline font-medium">{isBookmarked ? 'Saved' : 'Save'}</span>
             </button>
 
             <button
               onClick={handleShare}
-              className="inline-flex items-center gap-1.5 hover:text-stone-900 transition-colors min-h-[36px] px-2 py-1"
+              className="inline-flex items-center gap-1.5 hover:text-stone-900 transition-colors min-h-[44px] px-2.5 py-1 text-xs"
               title="Copy share link"
               aria-label="Copy share link"
             >
               {copied ? <Check className="w-4 h-4 text-emerald-800" /> : <Share2 className="w-4 h-4" />}
-              <span className="hidden sm:inline">{copied ? 'Copied' : 'Share'}</span>
+              <span className="hidden sm:inline font-medium">{copied ? 'Copied' : 'Share'}</span>
             </button>
           </div>
         </div>
@@ -401,21 +401,23 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onNavigate })
         </div>
       </div>
 
-      {/* Floating Mobile Reading Bar (< 768px) */}
-      <div className="md:hidden fixed bottom-3 left-4 right-4 z-40 bg-stone-900/95 backdrop-blur-md text-stone-100 border border-stone-700 px-4 py-2 shadow-2xl flex items-center justify-between">
+      {/* Floating Mobile Reading Bar (< 768px) - Positioned safely above MobileBottomNav */}
+      <div className="md:hidden fixed bottom-[calc(3.75rem+env(safe-area-inset-bottom,0px))] left-3 right-3 z-30 bg-[#1c1917]/95 backdrop-blur-md text-stone-100 border border-stone-700 px-3 py-1.5 shadow-2xl flex items-center justify-between">
         <button
           onClick={() => onNavigate('/')}
-          className="flex items-center gap-1 text-xs text-stone-300 hover:text-white py-1"
+          className="flex items-center gap-1.5 text-xs text-stone-300 hover:text-white min-h-[44px] px-2 py-1 font-medium"
+          aria-label="Back to Journal"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>Journal</span>
         </button>
 
-        <span className="text-stone-600">|</span>
+        <span className="text-stone-700 font-mono">|</span>
 
         <button
           onClick={handleBookmark}
-          className="flex items-center gap-1 text-xs text-stone-300 hover:text-white py-1"
+          className="flex items-center gap-1.5 text-xs text-stone-300 hover:text-white min-h-[44px] px-2 py-1 font-medium"
+          aria-label={isBookmarked ? 'Saved to bookmarks' : 'Save bookmark'}
         >
           {isBookmarked ? (
             <BookmarkCheck className="w-3.5 h-3.5 text-emerald-400" />
@@ -425,21 +427,23 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onNavigate })
           <span>{isBookmarked ? 'Saved' : 'Save'}</span>
         </button>
 
-        <span className="text-stone-600">|</span>
+        <span className="text-stone-700 font-mono">|</span>
 
         <button
           onClick={handleShare}
-          className="flex items-center gap-1 text-xs text-stone-300 hover:text-white py-1"
+          className="flex items-center gap-1.5 text-xs text-stone-300 hover:text-white min-h-[44px] px-2 py-1 font-medium"
+          aria-label="Share story"
         >
           {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Share2 className="w-3.5 h-3.5" />}
           <span>{copied ? 'Copied' : 'Share'}</span>
         </button>
 
-        <span className="text-stone-600">|</span>
+        <span className="text-stone-700 font-mono">|</span>
 
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="text-xs text-stone-300 hover:text-white py-1"
+          className="text-xs text-stone-300 hover:text-white min-h-[44px] px-2 py-1 font-medium"
+          aria-label="Scroll to top of article"
         >
           &uarr; Top
         </button>

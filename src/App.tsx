@@ -7,6 +7,7 @@ import React, { useState, useEffect, useCallback, lazy, Suspense } from 'react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { HomeJournal } from './components/HomeJournal';
+import { MobileBottomNav } from './components/MobileBottomNav';
 import { ARTICLES, CATEGORIES, Article, Category } from './data/articles';
 
 // Dynamic code-splitting for non-homepage routes & diagnostics (saves ~47 KiB unused JS)
@@ -280,7 +281,7 @@ export default function App() {
   }, [matchedArticle, matchedCategory, isArchive, isNotFound, pathname]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f7f5f0] text-[#1c1917]">
+    <div className="min-h-screen flex flex-col bg-[#f7f5f0] text-[#1c1917] pb-16 md:pb-0">
       <Header
         currentPath={currentPath}
         onNavigate={navigate}
@@ -320,6 +321,12 @@ export default function App() {
       <Footer
         onNavigate={navigate}
         onOpenDiagnostics={() => setIsDiagnosticOpen(true)}
+      />
+
+      {/* Mobile-Friendly Bottom Navigation Bar (Elle Style) */}
+      <MobileBottomNav
+        currentPath={currentPath}
+        onNavigate={navigate}
       />
 
       {/* Interactive System Diagnostic Monitor (lazy loaded on demand) */}

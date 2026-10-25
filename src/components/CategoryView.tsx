@@ -36,7 +36,7 @@ export const CategoryView: React.FC<CategoryViewProps> = ({ category, onNavigate
   const remainingStories = categoryArticles.slice(1);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-28 sm:pt-12 sm:pb-16">
       {/* Breadcrumb Navigation */}
       <div className="border-b border-stone-200 pb-3 mb-6 sm:mb-8 text-xs flex items-center justify-between">
         <nav aria-label="Breadcrumb" className="inline-flex items-center gap-1.5 text-stone-600">

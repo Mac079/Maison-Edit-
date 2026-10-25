@@ -84,7 +84,7 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-28 sm:pt-12 sm:pb-16">
       {/* Breadcrumb */}
       <div className="border-b border-stone-200 pb-4 mb-8 text-xs">
         <nav aria-label="Breadcrumb" className="inline-flex items-center gap-1.5 text-stone-600">
@@ -155,7 +155,7 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
         </div>
 
         {/* Curated Editorial Keyword Chips */}
-        <div className="flex flex-wrap items-center gap-1.5 text-xs text-stone-700">
+        <div className="flex flex-wrap items-center gap-2 text-xs text-stone-700">
           <span className="font-mono text-[10px] uppercase tracking-widest text-stone-800 font-semibold mr-1">Curated Inquiries:</span>
           {popularKeywords.map((kw) => {
             const isActive = searchQuery.toLowerCase() === kw.toLowerCase();
@@ -163,10 +163,10 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
               <button
                 key={kw}
                 onClick={() => setSearchQuery(isActive ? '' : kw)}
-                className={`px-2.5 py-1 text-xs border transition-colors ${
+                className={`px-3 py-1.5 min-h-[38px] inline-flex items-center text-xs border transition-colors ${
                   isActive
-                    ? 'bg-stone-900 text-white border-stone-900'
-                    : 'bg-white text-stone-600 border-stone-200 hover:border-stone-800'
+                    ? 'bg-stone-900 text-white border-stone-900 font-medium'
+                    : 'bg-white text-stone-700 border-stone-300 hover:border-stone-800 hover:bg-stone-50'
                 }`}
               >
                 {kw}
@@ -179,9 +179,9 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
         <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-stone-200/60">
           <button
             onClick={() => setSelectedCategory('all')}
-            className={`px-3 py-2 text-xs font-medium transition-colors min-h-[36px] flex items-center ${
+            className={`px-3.5 py-2 text-xs font-semibold transition-colors min-h-[44px] flex items-center ${
               selectedCategory === 'all'
-                ? 'bg-stone-900 text-stone-50'
+                ? 'bg-stone-900 text-stone-50 shadow-xs'
                 : 'bg-stone-100 hover:bg-stone-200 text-stone-700'
             }`}
           >
@@ -194,9 +194,9 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
               <button
                 key={cat.slug}
                 onClick={() => setSelectedCategory(cat.slug)}
-                className={`px-3 py-2 text-xs font-medium transition-colors min-h-[36px] flex items-center ${
+                className={`px-3.5 py-2 text-xs font-semibold transition-colors min-h-[44px] flex items-center ${
                   isSelected
-                    ? 'bg-stone-900 text-stone-50'
+                    ? 'bg-stone-900 text-stone-50 shadow-xs'
                     : 'bg-stone-100 hover:bg-stone-200 text-stone-700'
                 }`}
               >
@@ -207,13 +207,13 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
           {savedIds.length > 0 && (
             <button
               onClick={() => setOnlySaved(!onlySaved)}
-              className={`inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium transition-colors min-h-[36px] ${
+              className={`inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold transition-colors min-h-[44px] ${
                 onlySaved
-                  ? 'bg-emerald-900 text-white'
+                  ? 'bg-emerald-900 text-white shadow-xs'
                   : 'bg-emerald-50 text-emerald-900 hover:bg-emerald-100 border border-emerald-200'
               }`}
             >
-              <BookmarkCheck className="w-3.5 h-3.5" />
+              <BookmarkCheck className="w-4 h-4 text-emerald-400" />
               <span>Saved Reading List ({savedIds.length})</span>
             </button>
           )}
@@ -221,13 +221,13 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
       </div>
 
       {/* View Mode & Results Count */}
-      <div className="text-xs text-stone-500 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <div className="text-xs text-stone-600 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div className="flex items-center gap-2">
           <span>Showing {filteredArticles.length} of {ARTICLES.length} stories</span>
           {searchQuery && (
             <button
               onClick={() => setSearchQuery('')}
-              className="text-stone-700 hover:underline ml-2"
+              className="text-stone-900 font-semibold underline underline-offset-2 ml-2 min-h-[36px] inline-flex items-center"
             >
               Clear search
             </button>
@@ -235,12 +235,12 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
         </div>
 
         {/* View Mode Toggle: Grid vs List */}
-        <div className="flex items-center gap-1 bg-stone-100 p-0.5 border border-stone-200 self-start sm:self-auto">
+        <div className="flex items-center gap-1 bg-stone-100 p-1 border border-stone-200 self-start sm:self-auto">
           <button
             onClick={() => setViewMode('grid')}
-            className={`px-2.5 py-1 text-xs font-medium transition-colors ${
+            className={`px-3 py-1.5 min-h-[38px] text-xs font-semibold transition-colors inline-flex items-center ${
               viewMode === 'grid'
-                ? 'bg-stone-900 text-stone-50'
+                ? 'bg-stone-900 text-stone-50 shadow-xs'
                 : 'text-stone-600 hover:text-stone-900'
             }`}
             title="Archival Grid View"
@@ -249,9 +249,9 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
           </button>
           <button
             onClick={() => setViewMode('list')}
-            className={`px-2.5 py-1 text-xs font-medium transition-colors ${
+            className={`px-3 py-1.5 min-h-[38px] text-xs font-semibold transition-colors inline-flex items-center ${
               viewMode === 'list'
-                ? 'bg-stone-900 text-stone-50'
+                ? 'bg-stone-900 text-stone-50 shadow-xs'
                 : 'text-stone-600 hover:text-stone-900'
             }`}
             title="Editorial List View"

@@ -49,67 +49,108 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenD
   return (
     <>
       <header className="border-b border-stone-200/80 bg-[#f7f5f0] sticky top-0 z-40 transition-shadow duration-200 shadow-xs">
-        {/* Top utility ribbon - Vogue Edition & Global Date */}
-        <div className="border-b border-stone-200/70 bg-[#f4f1ea] text-[11px] text-stone-600">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1.5 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <span className="font-mono uppercase tracking-widest text-stone-500 text-[10px]">
-                Edition: International
+        {/* Top utility ribbon - Elle Edition, Global Date & Trending Ticker */}
+        <div className="border-b border-stone-200/80 bg-[#f4f1ea] text-[11px] text-stone-700">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1.5 flex items-center justify-between gap-4">
+            <div className="flex items-center gap-3 shrink-0">
+              <span className="font-mono uppercase tracking-widest text-stone-600 text-[10px] font-semibold">
+                Edition: US / Paris / Global
               </span>
               <span className="hidden sm:inline text-stone-300">·</span>
-              <span className="hidden sm:inline font-editorial-body text-stone-600">
-                Monday, October 12, 2026
+              <span className="hidden sm:inline font-sans text-stone-600">
+                Wednesday, October 21, 2026
               </span>
             </div>
 
-            <div className="flex items-center gap-3.5">
+            {/* Elle Trending Topics Bar */}
+            <div className="hidden lg:flex items-center gap-2 overflow-hidden text-[11px] font-sans text-stone-600">
+              <span className="uppercase tracking-wider font-bold text-stone-900 shrink-0">
+                Trending:
+              </span>
+              <div className="flex items-center gap-3 truncate">
+                <button
+                  onClick={() => handleNav('/category/fashion-runway/')}
+                  className="hover:text-stone-950 transition-colors underline-offset-2 hover:underline"
+                >
+                  Paris Couture
+                </button>
+                <span className="text-stone-300">·</span>
+                <button
+                  onClick={() => handleNav('/#the-edit')}
+                  className="hover:text-stone-950 transition-colors underline-offset-2 hover:underline font-medium text-stone-900"
+                >
+                  The Autumn Trench
+                </button>
+                <span className="text-stone-300">·</span>
+                <button
+                  onClick={() => handleNav('/category/luxury-craftsmanship/')}
+                  className="hover:text-stone-950 transition-colors underline-offset-2 hover:underline"
+                >
+                  Saddlery Ateliers
+                </button>
+                <span className="text-stone-300">·</span>
+                <button
+                  onClick={() => handleNav('/category/luxury-objects/')}
+                  className="hover:text-stone-950 transition-colors underline-offset-2 hover:underline"
+                >
+                  High Horology
+                </button>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3 shrink-0">
               <button
                 onClick={onOpenDiagnostics}
-                className="inline-flex items-center gap-1.5 text-stone-600 hover:text-stone-900 transition-colors text-[10px] sm:text-[11px]"
-                title="System and responsive mobile layout check"
+                className="inline-flex items-center gap-1.5 text-stone-700 hover:text-stone-950 transition-colors text-[10px] sm:text-[11px]"
+                title="System and responsive mobile audit"
               >
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-700" />
-                <span className="hidden sm:inline">Diagnostic: Healthy & Responsive (17/17)</span>
-                <span className="sm:hidden font-mono text-emerald-800">Audit: 100% OK</span>
+                <span className="hidden sm:inline font-mono">Audit: 100% OK (All Images ≤ 80KB)</span>
+                <span className="sm:hidden font-mono text-emerald-800">100% OK</span>
               </button>
               <span className="text-stone-300">|</span>
-              <span className="font-serif italic text-stone-800 text-[11px]">Vol. XIV</span>
+              <a
+                href="#newsletter"
+                className="hidden sm:inline-block font-sans text-[11px] uppercase tracking-wider text-stone-900 font-semibold hover:text-stone-600 transition-colors"
+              >
+                Newsletter
+              </a>
             </div>
           </div>
         </div>
 
-        {/* Vogue-Style Masthead & Primary Bar */}
+        {/* Elle Iconic Masthead & Primary Bar */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between py-3.5 sm:py-5 border-b border-stone-200/60">
-            {/* Left: Vogue Hamburger Menu Button */}
+          <div className="flex items-center justify-between py-4 sm:py-6 border-b border-stone-200/80">
+            {/* Left: Elle Hamburger Menu Button */}
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setIsDrawerOpen(true)}
-                className="inline-flex items-center gap-2 px-2.5 py-1.5 text-stone-900 hover:text-stone-600 transition-colors min-h-[44px] min-w-[44px] -ml-2 text-xs uppercase tracking-widest font-medium group"
+                className="inline-flex items-center gap-2 px-2.5 py-1.5 text-stone-950 hover:text-stone-600 transition-colors min-h-[44px] min-w-[44px] -ml-2 text-xs uppercase tracking-widest font-bold group"
                 aria-label="Open editorial drawer menu"
               >
                 <Menu className="w-5 h-5 transition-transform group-hover:scale-110" />
-                <span className="hidden md:inline font-sans text-xs tracking-widest font-semibold">
+                <span className="hidden md:inline font-sans text-xs tracking-widest font-bold">
                   Menu
                 </span>
               </button>
             </div>
 
-            {/* Center: Authoritative Centered Masthead */}
+            {/* Center: Commanding Elle-Style Masthead */}
             <div className="text-center flex-1 px-2">
               <button
                 onClick={() => handleNav('/')}
-                className="inline-block text-2xl sm:text-4xl md:text-5xl font-editorial-title tracking-tight text-stone-950 hover:opacity-90 transition-opacity"
+                className="inline-block text-3xl sm:text-5xl md:text-6xl font-editorial-title font-bold tracking-tight text-stone-950 hover:opacity-90 transition-opacity"
               >
                 MAISON <span className="font-serif italic font-normal text-stone-800">EDIT</span>
               </button>
-              <div className="hidden sm:block text-[10px] md:text-[11px] font-sans uppercase tracking-[0.22em] text-stone-500 mt-0.5">
-                The Independent Journal of Runway, Atelier & Culture
+              <div className="text-[10px] sm:text-[11px] font-sans uppercase tracking-[0.24em] text-stone-700 mt-1 font-semibold">
+                Fashion · Beauty · Culture · Runway · The Edit
               </div>
             </div>
 
             {/* Right: Quick Search & Saved Reading List */}
-            <div className="flex items-center gap-2 sm:gap-3">
+            <div className="flex items-center gap-1.5 sm:gap-2">
               <button
                 onClick={() => handleNav('/archive/')}
                 className="inline-flex items-center gap-1.5 p-2 sm:px-3 sm:py-2 text-xs text-stone-800 hover:text-stone-950 transition-colors min-h-[44px] min-w-[44px] rounded-none hover:bg-stone-200/40"
@@ -117,7 +158,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenD
                 title="Search stories"
               >
                 <Search className="w-4 h-4" />
-                <span className="hidden md:inline uppercase tracking-wider text-[11px] font-medium">
+                <span className="hidden md:inline uppercase tracking-wider text-[11px] font-semibold">
                   Search
                 </span>
               </button>
@@ -129,11 +170,11 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenD
                 title="Saved reading list"
               >
                 <Bookmark className="w-4 h-4" />
-                <span className="hidden md:inline uppercase tracking-wider text-[11px] font-medium">
+                <span className="hidden md:inline uppercase tracking-wider text-[11px] font-semibold">
                   Saved
                 </span>
                 {bookmarkCount > 0 && (
-                  <span className="absolute -top-1 -right-1 sm:top-1 sm:right-1 bg-stone-900 text-stone-50 text-[10px] font-mono px-1.5 py-0.2 rounded-full min-w-[18px] text-center">
+                  <span className="absolute -top-1 -right-1 sm:top-1 sm:right-1 bg-stone-950 text-stone-50 text-[10px] font-mono px-1.5 py-0.2 rounded-full min-w-[18px] text-center font-bold">
                     {bookmarkCount}
                   </span>
                 )}
@@ -141,9 +182,9 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenD
             </div>
           </div>
 
-          {/* Department Navigation Bar (Desktop links & Mobile smooth-swipe ribbon) */}
+          {/* Elle Department Navigation Bar */}
           <nav aria-label="Departments" className="relative">
-            <div className="flex items-center md:justify-center gap-4 sm:gap-7 overflow-x-auto py-2.5 sm:py-3 no-scrollbar text-xs uppercase tracking-wider font-medium text-stone-700">
+            <div className="flex items-center md:justify-center gap-4 sm:gap-7 overflow-x-auto py-2.5 sm:py-3 no-scrollbar text-xs uppercase tracking-wider font-semibold text-stone-700">
               <button
                 onClick={() => handleNav('/')}
                 className={`whitespace-nowrap shrink-0 py-1 px-1 transition-colors relative min-h-[40px] flex items-center ${
@@ -173,6 +214,23 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenD
                 );
               })}
 
+              {/* The Edit - Signature Elle Shopping Section */}
+              <button
+                onClick={() => {
+                  if (currentPath === '/') {
+                    const el = document.getElementById('the-edit');
+                    if (el) {
+                      el.scrollIntoView({ behavior: 'smooth' });
+                      return;
+                    }
+                  }
+                  handleNav('/#the-edit');
+                }}
+                className="whitespace-nowrap shrink-0 py-1 px-1 transition-colors relative min-h-[40px] flex items-center text-[#854d0e] hover:text-stone-950 font-bold"
+              >
+                ★ The Edit
+              </button>
+
               <button
                 onClick={() => handleNav('/archive/')}
                 className={`whitespace-nowrap shrink-0 py-1 px-1 transition-colors relative min-h-[40px] flex items-center ${
@@ -181,7 +239,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenD
                     : 'hover:text-stone-950 text-stone-600'
                 }`}
               >
-                Complete Archive
+                Archive
               </button>
             </div>
           </nav>

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { ARTICLES, Article, CATEGORIES } from '../data/articles';
-import { ArrowUpRight, Check, ArrowRight, Bookmark, BookmarkCheck, Clock, Compass, Sparkles } from 'lucide-react';
+import { THE_EDIT_ITEMS, EditItem } from '../data/theEdit';
+import { TheEditModal } from './TheEditModal';
+import { ArrowUpRight, Check, ArrowRight, Bookmark, BookmarkCheck, Clock, Compass, Sparkles, ShoppingBag, Eye } from 'lucide-react';
 
 interface HomeJournalProps {
   onNavigate: (path: string) => void;
@@ -11,6 +13,7 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
   const [subscribed, setSubscribed] = useState(false);
   const [bookmarkedIds, setBookmarkedIds] = useState<string[]>([]);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [selectedEditItem, setSelectedEditItem] = useState<EditItem | null>(null);
 
   // Sync bookmarks from localStorage
   useEffect(() => {
@@ -289,7 +292,85 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
         </section>
 
         {/* ========================================================= */}
-        {/* PACKAGE 3: IN FOCUS / THE COUTURE STATEMENT               */}
+        {/* PACKAGE 3: THE EDIT: WHAT TO BUY NOW (ELLE PICKS)        */}
+        {/* ========================================================= */}
+        <section id="the-edit" aria-label="The Edit: What To Buy Now" className="mb-14 sm:mb-20 scroll-mt-28">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-stone-900 pb-3 mb-6 sm:mb-8 gap-2">
+            <div>
+              <div className="text-[11px] font-sans uppercase tracking-[0.2em] text-[#854d0e] font-bold mb-1 flex items-center gap-1.5">
+                <ShoppingBag className="w-3.5 h-3.5" />
+                <span>The Maison Edit · Curated Wardrobe &amp; Atelier Investments</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-editorial-serif font-medium text-stone-950">
+                What to Buy Now: The Autumn Investment List
+              </h2>
+            </div>
+            <span className="text-xs text-stone-600 font-sans">
+              6 Editor-Approved Investment Pieces
+            </span>
+          </div>
+
+          <p className="text-stone-700 text-sm font-editorial-body max-w-2xl mb-8 leading-relaxed">
+            From double-faced Milanese tailoring to hand-stitched Parisian leathercraft and Geneva high horology, these are the enduring acquisitions chosen by our editors for Autumn/Winter 2026.
+          </p>
+
+          {/* 6-Card Editorial Showcase */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {THE_EDIT_ITEMS.map((item) => (
+              <article
+                key={item.id}
+                onClick={() => setSelectedEditItem(item)}
+                className="group cursor-pointer flex flex-col justify-between bg-white border border-stone-200/90 p-4 transition-all hover:border-stone-900 hover:shadow-md"
+              >
+                <div>
+                  <div className="relative aspect-[3/4] overflow-hidden bg-stone-950 mb-4 w-full">
+                    <img
+                      src={item.image}
+                      alt={item.imageAlt}
+                      width="600"
+                      height="800"
+                      decoding="async"
+                      referrerPolicy="no-referrer"
+                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                    <div className="absolute top-2.5 left-2.5 bg-stone-950/85 text-stone-100 text-[10px] uppercase tracking-wider px-2 py-0.5 font-mono">
+                      {item.category}
+                    </div>
+                    <div className="absolute bottom-2.5 right-2.5 bg-white/95 text-stone-950 text-xs font-serif font-bold px-2 py-1 shadow-xs">
+                      {item.price}
+                    </div>
+                  </div>
+
+                  <div className="text-[11px] uppercase tracking-wider text-stone-600 font-mono mb-1 font-semibold">
+                    {item.brand}
+                  </div>
+
+                  <h3 className="font-editorial-serif text-lg sm:text-xl font-medium text-stone-950 group-hover:text-stone-700 transition-colors leading-snug mb-2">
+                    {item.name}
+                  </h3>
+
+                  <p className="text-xs text-stone-600 line-clamp-2 font-editorial-body leading-relaxed mb-4 italic">
+                    &ldquo;{item.editorNote}&rdquo;
+                  </p>
+                </div>
+
+                <div className="pt-3 border-t border-stone-200 flex items-center justify-between text-xs">
+                  <span className="text-stone-500 font-mono text-[11px]">
+                    {item.editorialRating}
+                  </span>
+                  <span className="inline-flex items-center gap-1 font-semibold text-stone-900 group-hover:translate-x-0.5 transition-transform">
+                    <span>Inspect</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </span>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* ========================================================= */}
+        {/* PACKAGE 4: IN FOCUS / THE COUTURE STATEMENT               */}
         {/* ========================================================= */}
         <section
           onClick={() => onNavigate(`/journal/${ARTICLES[1].slug}/`)}
@@ -537,35 +618,11 @@ export const HomeJournal: React.FC<HomeJournalProps> = ({ onNavigate }) => {
         </section>
       </div>
 
-      {/* ========================================================= */}
-      {/* VOGUE MOBILE FLOATING QUICK-ACTION BAR (< 768px)          */}
-      {/* ========================================================= */}
-      <div className="md:hidden fixed bottom-3 left-4 right-4 z-40 bg-stone-900/95 backdrop-blur-md text-stone-100 border border-stone-700 px-4 py-1.5 shadow-2xl flex items-center justify-between">
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="flex items-center gap-1.5 text-xs text-stone-200 hover:text-white min-h-[44px] px-2"
-          aria-label="Back to top"
-        >
-          <span>Top &uarr;</span>
-        </button>
-        <span className="text-stone-600" aria-hidden="true">|</span>
-        <button
-          onClick={() => onNavigate('/archive/?saved=true')}
-          className="flex items-center gap-1.5 text-xs text-stone-200 hover:text-white min-h-[44px] px-2"
-          aria-label={`View ${bookmarkedIds.length} saved reading list articles`}
-        >
-          <Bookmark className="w-3.5 h-3.5 text-emerald-400" />
-          <span>Saved ({bookmarkedIds.length})</span>
-        </button>
-        <span className="text-stone-600" aria-hidden="true">|</span>
-        <button
-          onClick={() => onNavigate('/archive/')}
-          className="flex items-center gap-1.5 text-xs text-stone-200 hover:text-white min-h-[44px] px-2"
-          aria-label="Browse full archive index"
-        >
-          <span>Archive</span>
-        </button>
-      </div>
+      {/* The Edit Item Inspection Modal */}
+      <TheEditModal
+        item={selectedEditItem}
+        onClose={() => setSelectedEditItem(null)}
+      />
     </div>
   );
 };
