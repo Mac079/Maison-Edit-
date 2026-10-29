@@ -9,6 +9,8 @@ import { Footer } from './components/Footer';
 import { HomeJournal } from './components/HomeJournal';
 import { MobileBottomNav } from './components/MobileBottomNav';
 import { ARTICLES, CATEGORIES, Article, Category } from './data/articles';
+import { THE_EDIT_ITEMS } from './data/theEdit';
+import { getSchemaForRoute, SITE_ORIGIN } from './utils/schemaGenerator';
 
 // Dynamic code-splitting for non-homepage routes & diagnostics (saves ~47 KiB unused JS)
 const ArticleView = lazy(() => import('./components/ArticleView').then(m => ({ default: m.ArticleView })));
@@ -93,14 +95,12 @@ export default function App() {
 
   // Update dynamic document title, meta tags, and JSON-LD schema for SEO
   useEffect(() => {
-    const SITE_ORIGIN = 'https://maison-edit-opal.vercel.app';
     let title = 'Maison Edit | Luxury Fashion Journal & Haute Couture Archive';
     let desc = 'An independent luxury fashion journal covering heritage houses, Italian tailoring, runway culture, craftsmanship, and enduring style stories.';
     let keywords = 'haute couture, luxury fashion, artisan craftsmanship, runway collections, heritage houses, Maison Edit, fashion journalism, Italian tailoring, sartorial elegance, quiet luxury, bespoke tailoring, saddle stitch, leathercraft atelier, vintage couture archive, textile conservation, biomaterials, high horology, haute joaillerie';
     let ogImage = `${SITE_ORIGIN}/images/paris-atelier-couture-gown-cover.webp`;
     let ogType = 'website';
-    let canonicalUrl = `${SITE_ORIGIN}${pathname === '/' ? '/' : `${pathname}/`}`;
-    let dynamicSchema: object | null = null;
+    const canonicalUrl = `${SITE_ORIGIN}${pathname === '/' ? '/' : `${pathname}/`}`;
 
     if (matchedArticle) {
       title = matchedArticle.seoTitle || `${matchedArticle.title} | Maison Edit`;
@@ -108,122 +108,13 @@ export default function App() {
       keywords = (matchedArticle.seoKeywords || matchedArticle.tags).join(', ');
       ogImage = matchedArticle.image.startsWith('http') ? matchedArticle.image : `${SITE_ORIGIN}${matchedArticle.image}`;
       ogType = 'article';
-
-      dynamicSchema = {
-        '@context': 'https://schema.org',
-        '@graph': [
-          {
-            '@type': 'NewsArticle',
-            '@id': `${canonicalUrl}#article`,
-            'isPartOf': {
-              '@type': 'WebSite',
-              '@id': `${SITE_ORIGIN}/#website`,
-              'name': 'Maison Edit',
-              'url': `${SITE_ORIGIN}/`,
-            },
-            'headline': matchedArticle.title,
-            'alternativeHeadline': matchedArticle.subtitle,
-            'description': desc,
-            'inLanguage': 'en-US',
-            'mainEntityOfPage': canonicalUrl,
-            'image': [ogImage],
-            'datePublished': matchedArticle.datePublished || '2026-10-12T08:00:00Z',
-            'dateModified': matchedArticle.dateModified || '2026-10-14T19:45:00Z',
-            'author': {
-              '@type': 'Person',
-              'name': matchedArticle.author,
-              'jobTitle': matchedArticle.authorRole,
-            },
-            'publisher': {
-              '@type': 'NewsMediaOrganization',
-              '@id': `${SITE_ORIGIN}/#organization`,
-              'name': 'Maison Edit Publishing Group',
-              'url': `${SITE_ORIGIN}/`,
-              'logo': {
-                '@type': 'ImageObject',
-                'url': `${SITE_ORIGIN}/images/paris-atelier-couture-gown-cover.webp`,
-              },
-            },
-            'articleSection': matchedArticle.categoryName,
-            'keywords': keywords,
-            'wordCount': matchedArticle.wordCount || 1200,
-          },
-          {
-            '@type': 'BreadcrumbList',
-            '@id': `${canonicalUrl}#breadcrumb`,
-            'itemListElement': [
-              {
-                '@type': 'ListItem',
-                'position': 1,
-                'name': 'Home',
-                'item': `${SITE_ORIGIN}/`,
-              },
-              {
-                '@type': 'ListItem',
-                'position': 2,
-                'name': matchedArticle.categoryName,
-                'item': `${SITE_ORIGIN}/category/${matchedArticle.categorySlug}/`,
-              },
-              {
-                '@type': 'ListItem',
-                'position': 3,
-                'name': matchedArticle.title,
-                'item': canonicalUrl,
-              },
-            ],
-          },
-        ],
-      };
     } else if (matchedCategory) {
       title = matchedCategory.seoTitle || `${matchedCategory.name} | Maison Edit`;
       desc = matchedCategory.seoDescription || matchedCategory.description;
       keywords = (matchedCategory.keywords || []).join(', ');
-
-      dynamicSchema = {
-        '@context': 'https://schema.org',
-        '@graph': [
-          {
-            '@type': 'CollectionPage',
-            '@id': `${canonicalUrl}#webpage`,
-            'url': canonicalUrl,
-            'name': title,
-            'description': desc,
-            'inLanguage': 'en-US',
-            'isPartOf': {
-              '@id': `${SITE_ORIGIN}/#website`,
-            },
-          },
-          {
-            '@type': 'BreadcrumbList',
-            '@id': `${canonicalUrl}#breadcrumb`,
-            'itemListElement': [
-              {
-                '@type': 'ListItem',
-                'position': 1,
-                'name': 'Home',
-                'item': `${SITE_ORIGIN}/`,
-              },
-              {
-                '@type': 'ListItem',
-                'position': 2,
-                'name': matchedCategory.name,
-                'item': canonicalUrl,
-              },
-            ],
-          },
-        ],
-      };
     } else if (isArchive) {
       title = 'The Article Archive | Maison Edit Luxury Fashion Index';
       desc = 'Search and explore the complete Maison Edit archive of luxury fashion essays, Italian tailoring analyses, and haute couture investigations.';
-      dynamicSchema = {
-        '@context': 'https://schema.org',
-        '@type': 'CollectionPage',
-        'url': canonicalUrl,
-        'name': title,
-        'description': desc,
-        'inLanguage': 'en-US',
-      };
     } else if (isNotFound) {
       title = 'Page Not Found | Maison Edit';
       desc = 'The requested story or page could not be located in this edition of Maison Edit.';
@@ -263,21 +154,16 @@ export default function App() {
     }
     canonicalTag.setAttribute('href', canonicalUrl);
 
-    // Dynamic Schema JSON-LD injection
-    const existingDynamicScript = document.getElementById('maison-dynamic-schema');
-    if (dynamicSchema) {
-      if (existingDynamicScript) {
-        existingDynamicScript.textContent = JSON.stringify(dynamicSchema);
-      } else {
-        const script = document.createElement('script');
-        script.id = 'maison-dynamic-schema';
-        script.type = 'application/ld+json';
-        script.textContent = JSON.stringify(dynamicSchema);
-        document.head.appendChild(script);
-      }
-    } else if (existingDynamicScript) {
-      existingDynamicScript.remove();
+    // Dynamic Schema.org JSON-LD generation and injection for EVERY page
+    const routeSchemaResult = getSchemaForRoute(pathname, ARTICLES, CATEGORIES, THE_EDIT_ITEMS);
+    let existingDynamicScript = document.getElementById('maison-dynamic-schema');
+    if (!existingDynamicScript) {
+      existingDynamicScript = document.createElement('script');
+      existingDynamicScript.id = 'maison-dynamic-schema';
+      existingDynamicScript.setAttribute('type', 'application/ld+json');
+      document.head.appendChild(existingDynamicScript);
     }
+    existingDynamicScript.textContent = JSON.stringify(routeSchemaResult.schema, null, 2);
   }, [matchedArticle, matchedCategory, isArchive, isNotFound, pathname]);
 
   return (
